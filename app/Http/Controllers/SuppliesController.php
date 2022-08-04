@@ -14,6 +14,10 @@ class SuppliesController extends Controller
      */
     public function index()
     {
+        $supplies = Supplies::all();
+        return view('supplies.index', [
+            'supplies' => $supplies
+        ]);
         //
     }
 
@@ -24,6 +28,7 @@ class SuppliesController extends Controller
      */
     public function create()
     {
+        return view('supplies.create');
         //
     }
 
@@ -35,6 +40,14 @@ class SuppliesController extends Controller
      */
     public function store(Request $request)
     {
+        $supplies = new Supplies();
+        $supplies->name = $request->productName;
+        $supplies->type = $request->productType;
+        $supplies->brand = $request->productBrand;
+        $supplies->price = $request->productPrice;
+        $supplies->quantity = $request->productQuantity;
+        $supplies->save();
+        return redirect('/supplies/create')->with('productConfirmation', 'Product added');
         //
     }
 
@@ -44,8 +57,11 @@ class SuppliesController extends Controller
      * @param  \App\Models\Supplies  $supplies
      * @return \Illuminate\Http\Response
      */
-    public function show(Supplies $supplies)
+    // public function show(Supplies $supplies)
+    public function show($id)
     {
+        $supplies = Supplies::findOrFail($id);
+        return view('supplies.show', ['supplies' => $supplies]);
         //
     }
 
