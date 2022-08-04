@@ -8,4 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class Supplies extends Model
 {
     use HasFactory;
+    // protected $table = 'supplies'; // incase model doesnt work
 }
