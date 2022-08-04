@@ -71,8 +71,11 @@ class SuppliesController extends Controller
      * @param  \App\Models\Supplies  $supplies
      * @return \Illuminate\Http\Response
      */
-    public function edit(Supplies $supplies)
+    // public function edit(Supplies $supplies)
+    public function edit($id)
     {
+        $supplies = Supplies::findOrFail($id);
+        return view('supplies.edit', ['supplies' => $supplies]);
         //
     }
 
@@ -83,8 +86,17 @@ class SuppliesController extends Controller
      * @param  \App\Models\Supplies  $supplies
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Supplies $supplies)
+    // public function update(Request $request, Supplies $supplies)
+    public function update(Request $request, $id)
     {
+        $supplies = Supplies::findOrFail($id);
+        $supplies->name = $request->productName;
+        $supplies->type = $request->productType;
+        $supplies->brand = $request->productBrand;
+        $supplies->price = $request->productPrice;
+        $supplies->quantity = $request->productQuantity;
+        $supplies->update();
+        return redirect('/supplies')->with('productConfirmation', 'Product updated');
         //
     }
 
@@ -94,8 +106,12 @@ class SuppliesController extends Controller
      * @param  \App\Models\Supplies  $supplies
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Supplies $supplies)
+    // public function destroy(Supplies $supplies)
+    public function destroy($id)
     {
+        $supplies = Supplies::findOrFail($id);
+        $supplies->delete();
+        return redirect('/supplies');
         //
     }
 }
