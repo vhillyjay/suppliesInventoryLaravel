@@ -37,7 +37,7 @@
             <a class="sidebar-brand d-flex align-items-center justify-content-center my-2" href="/">
                 <div class="sidebar-brand-icon ">
                     <!-- <i class="bi bi-emoji-laughing"></i> -->
-                    <img src="/img/logo.png" style="height:40px" alt="cvs logo">
+                    <img src="/img/images.png" style="height:40px" alt="cvs logo">
                 </div>
                 <div class="sidebar-brand-text mx-3">CVS School Supplies Inventory</div>
             </a>
