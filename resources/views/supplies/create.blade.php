@@ -4,7 +4,8 @@
     <h1 class="h3 mb-0 text-gray-800">Create</h1>
 </div>
 
-<form action="/supplies" method="POST">
+<!-- <form action="/supplies" method="POST"> -->
+<form action=" {{ route('supplies.store') }} " method="POST">
     @csrf
     <input type="text" id="productName" name="productName" placeholder="Product Name" required>
     <input type="text" id="productType" name="productType" placeholder="Product Type" required>

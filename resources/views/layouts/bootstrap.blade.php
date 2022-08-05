@@ -62,12 +62,12 @@
 
             <!-- Nav Item - Charts -->
             <li class="nav-item">
-                <a class="nav-link" href="/supplies">
+                <a class="nav-link" href=" {{ route('supplies.index') }} ">
                     <i class="bi bi-boxes"></i>
                     <span>Supplies</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/supplies/create">
+                <a class="nav-link" href=" {{ route('supplies.create') }} ">
                     <i class="bi bi-plus-square"></i>
                     <span>Add new Product</span></a>
             </li>

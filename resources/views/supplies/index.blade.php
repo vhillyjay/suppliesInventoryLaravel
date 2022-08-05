@@ -46,7 +46,9 @@
                             <td>{{ $suppliesData->brand }}</td>
                             <td>{{ $suppliesData->price }}</td>
                             <td>{{ $suppliesData->quantity }}</td>
-                            <td><a href="/supplies/{{$suppliesData->id}}">Details</a></td>
+                            <!-- <td><a href="/supplies/{{$suppliesData->id}}">Details</a></td> -->
+                            <td><a href=" {{ route('supplies.show', $suppliesData->id) }} ">Details</a></td>
+                            <!-- named routes -->
                         </tr>                    
                     @endforeach
                     </tbody>

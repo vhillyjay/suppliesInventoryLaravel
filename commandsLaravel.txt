@@ -15,6 +15,9 @@ create database dbname;
 php artisan make:migration create_name_table
 php artisan migrate
 
+UPLOADING TO HEROKU PROBLEMS
+
+FORBIDDEN YOU DONT HAVE PERMISSION TO ACCESS THIS RESOURCE
 create .htaccess
     <IfModule mod_rewrite.c>
     RewriteEngine on
@@ -22,4 +25,16 @@ create .htaccess
     RewriteRule ^(.*)$ public/$1 [L]
     </IfModule>
 
+THE ONLY SUPPORTED CYPHERS
 php artisan key:generate
+
+LARAVEL HEROKU VITE MANIFEST NOT FOUND
+npm install
+npm run dev
+npm run build
+    heroku cli
+        heroku buildpacks:set heroku/php
+        heroku buildpacks:set heroku/nodejs
+    or settings/buildpacks
+        add buildpack
+redeploy

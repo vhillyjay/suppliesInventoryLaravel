@@ -4,7 +4,8 @@
     <h1 class="h3 mb-0 text-gray-800">edit/update</h1>
 </div>
 
-<form action="/supplies/{{ $supplies->id }}" method="POST">
+<!-- <form action="/supplies/{{ $supplies->id }}" method="POST"> -->
+<form action=" {{ route('supplies.update', $supplies->id) }} " method="POST">
     @csrf
     @method('PUT')
     <input type="text" id="productName" name="productName" value="{{ $supplies->name }}">

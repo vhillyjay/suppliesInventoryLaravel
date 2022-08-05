@@ -27,10 +27,10 @@ Route::get('/dashboard', function () {
 
 require __DIR__.'/auth.php';
 
-Route::get('/supplies', [App\Http\Controllers\SuppliesController::class, 'index'])->middleware(['auth']);
-Route::get('/supplies/create', [App\Http\Controllers\SuppliesController::class, 'create'])->middleware(['auth']);
-Route::post('/supplies', [App\Http\Controllers\SuppliesController::class, 'store'])->middleware(['auth']);
-Route::get('/supplies/{id}', [App\Http\Controllers\SuppliesController::class, 'show'])->middleware(['auth']); 
-Route::get('/supplies/{id}/edit', [App\Http\Controllers\SuppliesController::class, 'edit'])->middleware(['auth']);
-Route::put('/supplies/{id}', [App\Http\Controllers\SuppliesController::class, 'update'])->middleware(['auth']);
-Route::delete('supplies/{id}', [App\Http\Controllers\SuppliesController::class, 'destroy'])->middleware(['auth']);
+Route::get('/supplies', [App\Http\Controllers\SuppliesController::class, 'index'])->middleware(['auth'])->name('supplies.index');
+Route::get('/supplies/create', [App\Http\Controllers\SuppliesController::class, 'create'])->middleware(['auth'])->name('supplies.create');
+Route::post('/supplies', [App\Http\Controllers\SuppliesController::class, 'store'])->middleware(['auth'])->name('supplies.store');
+Route::get('/supplies/{id}', [App\Http\Controllers\SuppliesController::class, 'show'])->middleware(['auth'])->name('supplies.show'); 
+Route::get('/supplies/{id}/edit', [App\Http\Controllers\SuppliesController::class, 'edit'])->middleware(['auth'])->name('supplies.edit');
+Route::put('/supplies/{id}', [App\Http\Controllers\SuppliesController::class, 'update'])->middleware(['auth'])->name('supplies.update');
+Route::delete('supplies/{id}', [App\Http\Controllers\SuppliesController::class, 'destroy'])->middleware(['auth'])->name('supplies.destroy');
