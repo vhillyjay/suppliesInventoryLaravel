@@ -14,3 +14,12 @@ create database dbname;
 
 php artisan make:migration create_name_table
 php artisan migrate
+
+create .htaccess
+    <IfModule mod_rewrite.c>
+    RewriteEngine on
+    RewriteCond %{REQUEST_URI} !^public
+    RewriteRule ^(.*)$ public/$1 [L]
+    </IfModule>
+
+php artisan key:generate
