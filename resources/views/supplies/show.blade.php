@@ -8,11 +8,13 @@
     <p> Supplies quantity - {{ $supplies->quantity }} </p>
 </div>
 <div>
-    <form action="/supplies/{{ $supplies->id }}" method="POST">
+    <!-- <form action="/supplies/{{ $supplies->id }}" method="POST"> -->
+    <form action=" {{ route('supplies.destroy', $supplies->id) }} " method="POST">
         @csrf
         @method('DELETE')
         <button>Delete product</button>
     </form>
-    <a href="/supplies/{{ $supplies->id }}/edit">update</a>
+    <!-- <a href="/supplies/{{ $supplies->id }}/edit">update</a> -->
+    <a href=" {{ route('supplies.edit', $supplies->id) }} ">update/edit</a>
 </div>
 @endsection
