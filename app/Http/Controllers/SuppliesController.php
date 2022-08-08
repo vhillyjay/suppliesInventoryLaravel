@@ -42,8 +42,8 @@ class SuppliesController extends Controller
     {
         $supplies = new Supplies();
         $supplies->name = $request->productName;
-        // $supplies->name = $request->productName->validate([
-        //     'name' => 'unique'
+        // $supplies->name = $request->validate([
+        //     'name' => 'unique:name'
         // ]);
         $supplies->type = $request->productType;
         // $supplies->brand = $request->productBrand;
