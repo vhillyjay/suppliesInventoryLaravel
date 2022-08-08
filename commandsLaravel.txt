@@ -38,3 +38,8 @@ npm run build
     or settings/buildpacks
         add buildpack
 redeploy
+
+TO CUSTOMIZE LOGIN REDIRECT PAGE
+App\Providers\RouteServiceProvider
+    public const HOME = '/home';
+customize the line above to your desired redirect page

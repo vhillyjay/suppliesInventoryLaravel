@@ -224,7 +224,7 @@
                                         <x-dropdown-link :href="route('logout')"
                                                 onclick="event.preventDefault();
                                                             this.closest('form').submit();">
-                                            {{ __('Log Outsss') }}
+                                            {{ __('Logout') }}
                                         </x-dropdown-link>
                                     </form>
                                 </a>
