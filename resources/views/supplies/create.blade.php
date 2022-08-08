@@ -29,7 +29,7 @@
                     <input type="number" class="form-control my-2" id="productPrice" name="productPrice" placeholder="Price" required min="0">
                     <input type="number" class="form-control my-2" id="productQuantity" name="productQuantity" placeholder="Quantity" required min="0">
                     <div class="align-items-end">
-                        <input type="submit" value="Submit" class="btn btn-outline-danger btn-lg">
+                        <input type="submit" value="Submit" class="btn btn-outline-primary">
                         <!-- align end -->
                     </div>
                 </form>                
