@@ -42,13 +42,27 @@ class SuppliesController extends Controller
     {
         $supplies = new Supplies();
         $supplies->name = $request->productName;
+        // $supplies->name = $request->productName->validate([
+        //     'name' => 'unique'
+        // ]);
         $supplies->type = $request->productType;
-        $supplies->brand = $request->productBrand;
+        // $supplies->brand = $request->productBrand;
+        if ($request->productBrand === NULL) {
+            $supplies->brand = 'N/A';
+        } else {
+            $supplies->brand = $request->productBrand;
+        }
         $supplies->price = $request->productPrice;
         $supplies->quantity = $request->productQuantity;
         $supplies->save();
         return redirect('/supplies/create')->with('productConfirmation', 'Product added');
         //
+
+        // $validated = $request->validate([
+        //     'title' => 'required|unique:posts|max:255',
+        //     'body' => 'required',
+        // ]);
+
     }
 
     /**
