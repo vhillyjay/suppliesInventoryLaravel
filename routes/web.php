@@ -17,10 +17,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// Route::get('/tryindex', function () {
-//     return view('supplies.show');
-// });
-
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
