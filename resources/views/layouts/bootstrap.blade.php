@@ -34,7 +34,7 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center my-2" href="/">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center my-2" href="/home">
                 <div class="sidebar-brand-icon ">
                     <!-- <i class="bi bi-emoji-laughing"></i> -->
                     <img src="/img/images.png" style="height:40px" alt="cvs logo">
@@ -47,7 +47,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="/">
+                <a class="nav-link" href="/home">
                     <i class="bi bi-house"></i>
                     <span>Home</span></a>
             </li>
