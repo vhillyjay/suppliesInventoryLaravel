@@ -19,7 +19,7 @@ return new class extends Migration
             // creates created_at and updated_at
             $table->string('name');
             $table->string('type');
-            $table->string('brand');
+            $table->string('brand')->nullable();
             $table->integer('price');
             $table->integer('quantity');
             // $table->double('price', 8, 2);

@@ -25,7 +25,7 @@
                     @csrf
                     <input type="text" class="form-control my-2" id="productName" name="productName" placeholder="Name" required>
                     <input type="text" class="form-control my-2" id="productType" name="productType" placeholder="Type" required>
-                    <input type="text" class="form-control my-2" id="productBrand" name="productBrand" placeholder="Brand" required>
+                    <input type="text" class="form-control my-2" id="productBrand" name="productBrand" placeholder="Brand">
                     <input type="number" class="form-control my-2" id="productPrice" name="productPrice" placeholder="Price" required min="0">
                     <input type="number" class="form-control my-2" id="productQuantity" name="productQuantity" placeholder="Quantity" required min="0">
                     <div class="align-items-end">
