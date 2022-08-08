@@ -10,7 +10,7 @@
     <meta name="author" content="">
 
     <title>CVS School Supplies Inventory</title>
-    <link rel="icon" type="image/x-icon" href="/img/logo.png">
+    <link rel="icon" type="image/x-icon" href="/img/266146.png">
 
     <!-- Custom fonts for this template-->
     <link href="/vendor/all.min.css" rel="stylesheet" type="text/css">
@@ -37,7 +37,7 @@
             <a class="sidebar-brand d-flex align-items-center justify-content-center my-2" href="/home">
                 <div class="sidebar-brand-icon ">
                     <!-- <i class="bi bi-emoji-laughing"></i> -->
-                    <img src="/img/images.png" style="height:40px" alt="cvs logo">
+                    <img src="/img/266146.png" style="height:40px" alt="cvs logo">
                 </div>
                 <div class="sidebar-brand-text mx-3">CVS School Supplies Inventory</div>
             </a>
@@ -71,11 +71,11 @@
                     <i class="bi bi-plus-square"></i>
                     <span>Add new Product</span></a>
             </li>
-            <li class="nav-item">
+            <!-- <li class="nav-item">
                 <a class="nav-link" href="/ff">
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Sell Product</span></a>
-            </li>
+            </li> -->
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
@@ -217,7 +217,6 @@
                                 <div class="dropdown-divider"></div>
 
                                 <!-- Authentication Logout -->
-                                <a class="dropdown-item" href="#">
                                     <form method="POST" action="{{ route('logout') }}">
                                         @csrf
 
@@ -227,7 +226,6 @@
                                             {{ __('Logout') }}
                                         </x-dropdown-link>
                                     </form>
-                                </a>
                                 <!-- Authentication Logout -->
 
                             </div>
