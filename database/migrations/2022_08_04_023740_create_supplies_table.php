@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             // creates created_at and updated_at
-            $table->string('name');
+            $table->string('name')->unique();
             $table->string('type');
             $table->string('brand')->nullable();
             $table->integer('price');
