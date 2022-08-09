@@ -25,13 +25,23 @@
                     {{ $message }}
                 @enderror -->
                 <!-- fix fix -->
+                <!-- {{ $errors }} -->
                 <form action=" {{ route('supplies.store') }} " method="POST">
                     @csrf
-                    <input type="text" class="form-control my-2" id="productName" name="productName" placeholder="Name" required>
-                    <input type="text" class="form-control my-2" id="productType" name="productType" placeholder="Type" required>
+                    <input type="text" class="form-control my-2" id="productName" name="productName" placeholder="Name" >
+                    @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                    @endif
+                    <input type="text" class="form-control my-2" id="productType" name="productType" placeholder="Type" >
                     <input type="text" class="form-control my-2" id="productBrand" name="productBrand" placeholder="Brand">
-                    <input type="number" class="form-control my-2" id="productPrice" name="productPrice" placeholder="Price" required min="0">
-                    <input type="number" class="form-control my-2" id="productQuantity" name="productQuantity" placeholder="Quantity" required min="0">
+                    <input type="number" class="form-control my-2" id="productPrice" name="productPrice" placeholder="Price"  min="0">
+                    <input type="number" class="form-control my-2" id="productQuantity" name="productQuantity" placeholder="Quantity"  min="0">
                     <div class="align-items-end">
                         <input type="submit" value="Submit" class="btn btn-outline-primary">
                         <!-- align end -->
