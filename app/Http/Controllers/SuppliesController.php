@@ -42,7 +42,7 @@ class SuppliesController extends Controller
     {
         
         $validated = $request->validate([
-            'name' => 'unique:supplies,name',
+            'name' => 'required, unique:supplies,name',
         ]);
         // fix fix
 

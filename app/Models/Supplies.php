@@ -9,4 +9,11 @@ class Supplies extends Model
 {
     use HasFactory;
     // protected $table = 'supplies'; // incase model doesnt work
+    // protected $fillable = [
+    //     'name',
+    //     'type',
+    //     'brand',
+    //     'price',
+    //     'quantity',
+    // ];
 }
