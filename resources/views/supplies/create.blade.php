@@ -21,6 +21,10 @@
                 <h6 class="m-0 font-weight-bold text-primary">Create New Product</h6>
             </div>
             <div class="card-body">
+                <!-- @error('productName')
+                    {{ $message }}
+                @enderror -->
+                <!-- fix fix -->
                 <form action=" {{ route('supplies.store') }} " method="POST">
                     @csrf
                     <input type="text" class="form-control my-2" id="productName" name="productName" placeholder="Name" required>
@@ -32,7 +36,7 @@
                         <input type="submit" value="Submit" class="btn btn-outline-primary">
                         <!-- align end -->
                     </div>
-                </form>                
+                </form>             
             </div>
         </div>
     </div>

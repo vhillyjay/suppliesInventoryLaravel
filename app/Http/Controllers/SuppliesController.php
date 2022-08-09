@@ -40,13 +40,18 @@ class SuppliesController extends Controller
      */
     public function store(Request $request)
     {
+        
+        $validated = $request->validate([
+            'name' => 'unique:supplies,name',
+        ]);
+        // fix fix
+
         $supplies = new Supplies();
         $supplies->name = $request->productName;
         // $supplies->name = $request->validate([
         //     'name' => 'unique:name'
         // ]);
         $supplies->type = $request->productType;
-        // $supplies->brand = $request->productBrand;
         if ($request->productBrand === NULL) {
             $supplies->brand = 'N/A';
         } else {
@@ -55,7 +60,8 @@ class SuppliesController extends Controller
         $supplies->price = $request->productPrice;
         $supplies->quantity = $request->productQuantity;
         $supplies->save();
-        return redirect('/supplies/create')->with('productConfirmation', 'Product added');
+        return redirect('/supplies/create');
+        // return redirect('/supplies/create')->with('productConfirmation', 'Product added');
         //
 
         // $validated = $request->validate([
