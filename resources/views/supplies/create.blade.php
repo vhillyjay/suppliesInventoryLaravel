@@ -1,17 +1,5 @@
 @extends('layouts.bootstrap')
 @section('content')
-<!-- <form action="/supplies" method="POST"> -->
-<!-- <form action=" {{ route('supplies.store') }} " method="POST">
-    @csrf
-    <input type="text" id="productName" name="productName" placeholder="Product Name" required>
-    <input type="text" id="productType" name="productType" placeholder="Product Type" required>
-    <input type="text" id="productBrand" name="productBrand" placeholder="Product Brand">
-    <input type="number" min="0" id="productPrice" name="productPrice" placeholder="Product Price" required>
-    <input type="number" min="0" pattern="[0-9]" id="productQuantity" name="productQuantity" placeholder="Product Quantity" required>
-    <input type="submit" value="Submit">
-</form>
-
-<p> {{ session('productConfirmation') }} </p> -->
 
 <div class="row justify-content-center align-items-center">
     <div class="col-lg-6">
@@ -21,23 +9,12 @@
                 <h6 class="m-0 font-weight-bold text-primary">Create New Product</h6>
             </div>
             <div class="card-body">
-                <!-- @error('productName')
-                    {{ $message }}
-                @enderror -->
-                <!-- fix fix -->
-                <!-- {{ $errors }} -->
                 <form action=" {{ route('supplies.store') }} " method="POST">
                     @csrf
                     <input type="text" class="form-control my-2" id="productName" name="productName" placeholder="Name" >
-                    @if ($errors->any())
-                    <div class="alert alert-danger">
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                    @endif
+                    @error('productName')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
                     <input type="text" class="form-control my-2" id="productType" name="productType" placeholder="Type" >
                     <input type="text" class="form-control my-2" id="productBrand" name="productBrand" placeholder="Brand">
                     <input type="number" class="form-control my-2" id="productPrice" name="productPrice" placeholder="Price"  min="0">
@@ -46,6 +23,15 @@
                         <input type="submit" value="Submit" class="btn btn-outline-primary">
                         <!-- align end -->
                     </div>
+                    @if(session('success'))
+                        <div class="alert alert-success" role="alert">
+                            {{ session('success') }}
+                        </div>
+                    @elseif(session('error'))
+                        <div class="alert alert-danger" role="alert">
+                            {{ session('error') }}
+                        </div>
+                    @endif
                 </form>             
             </div>
         </div>
