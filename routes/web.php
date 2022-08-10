@@ -34,5 +34,6 @@ Route::get('/supplies/{id}/edit', [App\Http\Controllers\SuppliesController::clas
 Route::put('/supplies/{id}', [App\Http\Controllers\SuppliesController::class, 'update'])->middleware(['auth'])->name('supplies.update');
 Route::delete('supplies/{id}', [App\Http\Controllers\SuppliesController::class, 'destroy'])->middleware(['auth'])->name('supplies.destroy');
 
+Route::get('/profile', [App\Http\Controllers\ProfileController::class, 'index'])->middleware(['auth'])->name('profile.index');
 Route::get('/profile/change-password', [App\Http\Controllers\ProfileController::class, 'changepassword'])->middleware(['auth'])->name('profile.changepassword');
 Route::post('/profile/change-password', [App\Http\Controllers\ProfileController::class, 'updatepassword'])->middleware(['auth'])->name('profile.updatepassword');
