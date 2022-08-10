@@ -169,7 +169,7 @@
                                     Change password
                                 </a>
                                 <div class="dropdown-divider"></div>
-
+                                                              
                                 <!-- Authentication Logout -->
                                     <form method="POST" action="{{ route('logout') }}">
                                         @csrf

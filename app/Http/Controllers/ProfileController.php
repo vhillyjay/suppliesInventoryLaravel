@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Profile;
 use Illuminate\Http\Request;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class ProfileController extends Controller
 {
@@ -93,17 +96,27 @@ class ProfileController extends Controller
     // post / update method like
     public function updatepassword(Request $request)
     {
-        // validation
+        // validation STEP1
         $request->validate([
             'old_password' => 'required',
             'new_password' => 'required|confirmed',
             // The field under validation must have a matching field of {field}_confirmation. For example, if the field under validation is password, a matching password_confirmation field must be present in the input.
         ]);
         // validating the input. if theres no data in the input(required), error will be shown 
-        dd($request->all());
+        // dd($request->all());
         
-        // match old pw
+        // match old pw STEP2 #Auth::user()->name# #auth()->user->password#
+        if (!Hash::check($request->old_password, Auth::user()->password)) {
+            // dd('old password doesnt match');
+            return back()->with('error', 'Doesnt match the old password. Please input the correct old password.');
+        }
+        // dd($request->all());
+        // if old_password(input) doesnt match the pw in db error will show, else will match the pw in db
 
-        // update nwe pw
+        // update new pw STEP3
+        User::whereId(Auth::user()->update([
+            'password' => Hash::make($request->new_password)
+        ]));
+        return back()->with('success', 'Password changed successfully!');
     }
 }

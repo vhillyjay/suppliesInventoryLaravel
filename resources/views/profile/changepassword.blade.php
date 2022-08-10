@@ -10,6 +10,17 @@
             <div class="card-body">
                 <form action=" {{ route('profile.updatepassword') }} " method="POST">
                     @csrf
+
+                    @if(session('success'))
+                        <div class="alert alert-success" role="alert">
+                            {{ session('success') }}
+                        </div>
+                    @elseif(session('error'))
+                        <div class="alert alert-danger" role="alert">
+                            {{ session('error') }}
+                        </div>
+                    @endif
+
                     <input type="password" class="form-control my-2" id="old_password" name="old_password" placeholder="Old Password" >
                         @error('old_password')
                             <span class="text-danger">{{ $message }}</span>
@@ -23,7 +34,7 @@
                         @enderror
                     <input type="password" class="form-control my-2" id="new_password_confirmation" name="new_password_confirmation" placeholder="Confirm Password">
                     <div class="align-items-end">
-                        <input type="submit" value="Submit" class="btn btn-outline-primary">
+                        <input type="submit" value="Change password" class="btn btn-outline-primary">
                         <!-- align end -->
                     </div>
                 </form>             
