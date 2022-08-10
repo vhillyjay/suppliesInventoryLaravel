@@ -43,3 +43,11 @@ TO CUSTOMIZE LOGIN REDIRECT PAGE
 App\Providers\RouteServiceProvider
     public const HOME = '/home';
 customize the line above to your desired redirect page
+
+TO SEND EMAIL ON FORGOT PASSWORD
+I used a free smtp testing site (mailtrap). Created an account. On the SMTP Settings tab go down to
+Integrations and you can see a dropdown list. I chose Laravel7+ as my integration. It will provide
+the mailing configuration than you can use in your .env file. After that it should work and the
+request for forgotten password will go to the inbox of your mailtrap acc. Reset Password Notification
+email is sent there. You can click the link and reset password should work as its intended to be. yv
+    https://mailtrap.io/
