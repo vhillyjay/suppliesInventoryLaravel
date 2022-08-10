@@ -40,11 +40,11 @@ class SuppliesController extends Controller
      */
     public function store(Request $request)
     {
-        
-        $validated = $request->validate([
-            'name' => 'required, unique:supplies,name',
+        $request->validate([
+            'productName' => 'required|unique:supplies,name',
         ]);
-        // fix fix
+        // dd($request->all());
+        // key is the input name from supplies.create
 
         $supplies = new Supplies();
         $supplies->name = $request->productName;
@@ -60,14 +60,7 @@ class SuppliesController extends Controller
         $supplies->price = $request->productPrice;
         $supplies->quantity = $request->productQuantity;
         $supplies->save();
-        return redirect('/supplies/create');
-        // return redirect('/supplies/create')->with('productConfirmation', 'Product added');
-        //
-
-        // $validated = $request->validate([
-        //     'title' => 'required|unique:posts|max:255',
-        //     'body' => 'required',
-        // ]);
+        return redirect('/supplies/create')->with('success', 'Product added successfully!');;
 
     }
 
