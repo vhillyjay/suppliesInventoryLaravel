@@ -45,5 +45,17 @@
             </div>
 
         </div>
+
+        <!-- Footer -->
+        <footer class="sticky-footer bg-white">
+            <div class="container my-auto">
+                <div class="copyright text-center my-auto">
+                    <span>Copyright &copy; vh 2022</span>
+                    <a href="https://github.com/vhillyjay" target="_blank"><img src="/img/github.png" alt="" height="25"></a>
+                </div>
+            </div>
+        </footer>
+        <!-- End of Footer -->
+
     </body>
 </html>
