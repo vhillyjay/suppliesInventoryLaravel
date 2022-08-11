@@ -15,6 +15,64 @@ create database dbname;
 php artisan make:migration create_name_table
 php artisan migrate
 
+UPLOADING TO HEROKU
+#
+    Deploying the app
+    - create heroku acc
+    - created the Procfile with this code inside
+    > web: vendor/bin/heroku-php-apache2 public/
+    - heroku login on cmd/terminal
+    - heroku create
+    > will create a random generated url for the app
+    - on your local repository path type this in the terminal
+    - git remote -v
+    > you will see the items below
+    ```
+        heroku  https://git.heroku.com/infinite-stream-78026.git (fetch)
+        heroku  https://git.heroku.com/infinite-stream-78026.git (push)
+        origin  https://github.com/vhillyjay/suppliesInventoryLaravel.git (fetch)
+        origin  https://github.com/vhillyjay/suppliesInventoryLaravel.git (push)
+    ```
+    - git push heroku main
+    > by this time Dyno Formation on Heroku will get the Procfile
+    - if error 500 shows go to app's settings on heroku 
+    - on config vars input the APP_DEBUG=true and APP_KEY=(this key depends on your end) from .env file
+#
+
+    Deploying the database
+        Select your app on heroku
+        Go to Resources tab
+        Under Add-ons select Heroku Postgres
+        Under Plan name select Hobby Dev - Free
+        Click Submit Order Form
+        Under Resources tab you can see Heroku Postgres - Attached as Database
+        Click it. Go to Settings tab.
+        You can see Database Credentials and click on it.
+            -Host
+            -Database
+            -User
+            -Port
+            -Password
+        These credentials will be shown.
+        On Settings tab of your app
+        Go to Config Vars and click Reveal Config Vars
+        Add the Database Credentials
+            DB_CONNECTION=
+            DB_HOST=
+            DB_PORT=
+            DB_DATABASE=
+            DB_USERNAME=
+            DB_PASSWORD=
+        On your terminal(cmd) login to heroku
+        Go to the app path/root folder
+            documents/github/path/path
+        Type in the terminal
+            heroku run php artisan migrate
+                (application in production)
+                (preparing database)(running migrations) / database/tables created
+            git push heroku main
+                (verifying deploy done)
+
 UPLOADING TO HEROKU PROBLEMS
 
 FORBIDDEN YOU DONT HAVE PERMISSION TO ACCESS THIS RESOURCE
