@@ -42,6 +42,8 @@ class SuppliesController extends Controller
     {
         $request->validate([
             'productName' => 'required|unique:supplies,name',
+            'productPrice' => 'numeric|min:0|between:0,1000000.99',
+            'productQuantity' => 'integer|min:0',
         ]);
         // dd($request->all());
         // key is the input name from supplies.create
@@ -102,6 +104,10 @@ class SuppliesController extends Controller
     // public function update(Request $request, Supplies $supplies)
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'productPrice' => 'numeric|min:0|between:0,1000000.99',
+            'productQuantity' => 'integer|min:0',
+        ]);
         $supplies = Supplies::findOrFail($id);
         $supplies->name = $request->productName;
         $supplies->type = $request->productType;

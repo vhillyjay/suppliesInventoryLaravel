@@ -64,18 +64,23 @@
             <li class="nav-item">
                 <a class="nav-link" href=" {{ route('supplies.index') }} ">
                     <i class="bi bi-boxes"></i>
-                    <span>Supplies</span></a>
+                    <span>List of Supplies</span></a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href=" {{ route('supplies.create') }} ">
                     <i class="bi bi-plus-square"></i>
                     <span>Add new Product</span></a>
             </li>
-            <!-- <li class="nav-item">
-                <a class="nav-link" href="/ff">
-                    <i class="fas fa-fw fa-chart-area"></i>
-                    <span>Sell Product</span></a>
-            </li> -->
+            <li class="nav-item">
+                <a class="nav-link" href="">
+                    <i class="bi bi-plus-square"></i>
+                    <span>Add Stocks for Supplies</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="">
+                    <i class="bi bi-plus-square"></i>
+                    <span>Release Stocks for Supplies</span></a>
+            </li>
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">

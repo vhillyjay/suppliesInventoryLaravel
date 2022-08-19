@@ -41,13 +41,19 @@
 
                     <div class="input-group my-2">
                         <span class="input-group-text" id="">Price</span>
-                        <input type="text" min="0" id="productPrice" name="productPrice" value="{{ $supplies->price }}" class="form-control" aria-label="" aria-describedby="">
+                        <input type="number" id="productPrice" name="productPrice" value="{{ $supplies->price }}" step=".01" class="form-control" aria-label="" aria-describedby="">
                     </div>
+                        @error('productPrice')
+                            <span class="text-danger"> {{ $message }} </span>
+                        @enderror
 
                     <div class="input-group my-2">
                         <span class="input-group-text" id="">Quantity</span>
-                        <input type="text" min="0"  id="productQuantity" name="productQuantity" value="{{ $supplies->quantity }}" class="form-control" aria-label="" aria-describedby="">
+                        <input type="number" id="productQuantity" name="productQuantity" value="{{ $supplies->quantity }}" class="form-control" aria-label="" aria-describedby="">
                     </div>
+                        @error('productQuantity')
+                            <span class="text-danger"> {{ $message }} </span>
+                        @enderror
 
                     <input type="submit" value="Submit" class="btn btn-outline-primary">
                 </form>        
