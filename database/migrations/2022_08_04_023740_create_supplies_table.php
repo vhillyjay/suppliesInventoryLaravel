@@ -20,7 +20,8 @@ return new class extends Migration
             $table->string('name')->unique();
             $table->string('type');
             $table->string('brand')->nullable();
-            $table->integer('price');
+            // $table->integer('price');
+            $table->decimal('price', 5, 2);
             $table->integer('quantity');
             // $table->double('price', 8, 2);
         });
