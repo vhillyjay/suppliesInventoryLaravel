@@ -35,6 +35,10 @@
                 <form action="  " method="">
                                        
                     <div class="input-group my-2">
+                        <span class="input-group-text" id="basic-addon1">ID:</span>
+                        <input type="text" id="" name="" disabled value="{{ Auth::user()->id }}" class="form-control" aria-label="" aria-describedby="basic-addon1">
+                    </div>
+                    <div class="input-group my-2">
                         <span class="input-group-text" id="basic-addon1">Name</span>
                         <input type="text" id="" name="" disabled value="{{ Auth::user()->name }}" class="form-control" aria-label="" aria-describedby="basic-addon1">
                     </div>

@@ -23,9 +23,10 @@ Route::get('/dashboard', function () {
 
 require __DIR__.'/auth.php';
 
-Route::get('/home', function () {
-    return view('home');
-});
+// Route::get('/home', function () {
+//     return view('home');
+// });
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->middleware(['auth'])->name('');
 Route::get('/supplies', [App\Http\Controllers\SuppliesController::class, 'index'])->middleware(['auth'])->name('supplies.index');
 Route::get('/supplies/create', [App\Http\Controllers\SuppliesController::class, 'create'])->middleware(['auth'])->name('supplies.create');
 Route::post('/supplies', [App\Http\Controllers\SuppliesController::class, 'store'])->middleware(['auth'])->name('supplies.store');
