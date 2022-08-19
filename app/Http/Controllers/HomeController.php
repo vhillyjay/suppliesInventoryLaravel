@@ -18,13 +18,19 @@ class HomeController extends Controller
     {
         // $home = Supplies::orderBy('updated_at', 'desc')->get();
         $home = DB::table('supplies')->orderBy('updated_at', 'desc')->get();
-        $homeSuppliesQuantity = DB::table('supplies')->pluck('quantity');
-            foreach ($homeSuppliesQuantity as $title) {
-                echo $title;
-            }
+        $homeTotalSupplies = DB::table('supplies')->pluck('quantity');
+        $totalCounter = 0;
+            foreach ($homeTotalSupplies as $totalSupplies) {
+                $totalCounter += $totalSupplies;
+            }; // echo "-" . $totalCounter;
+        $homeGrossAmount = DB::table('supplies')->pluck('price');
+        $grossAmountCounter = 0;
+            foreach ($homeGrossAmount as $totalGrossAmount) {
+        
+            } 
         return view('home', [
             'home' => $home,
-            'title' => $title,
+            'totalCounter' => $totalCounter,
         ]);
         //
     }
