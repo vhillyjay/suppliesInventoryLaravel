@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Home;
 use App\Models\Supplies;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -15,9 +16,15 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $home = Supplies::all();
+        // $home = Supplies::orderBy('updated_at', 'desc')->get();
+        $home = DB::table('supplies')->orderBy('updated_at', 'desc')->get();
+        $homeSuppliesQuantity = DB::table('supplies')->pluck('quantity');
+            foreach ($homeSuppliesQuantity as $title) {
+                echo $title;
+            }
         return view('home', [
             'home' => $home,
+            'title' => $title,
         ]);
         //
     }
