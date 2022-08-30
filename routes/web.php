@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\SuppliesController;
+use App\Http\Controllers\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,18 +29,18 @@ require __DIR__.'/auth.php';
 // Route::get('/home', function () {
 //     return view('home');
 // });
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->middleware(['auth'])->name('');
-Route::get('/supplies', [App\Http\Controllers\SuppliesController::class, 'index'])->middleware(['auth'])->name('supplies.index');
-Route::get('/supplies/create', [App\Http\Controllers\SuppliesController::class, 'create'])->middleware(['auth'])->name('supplies.create');
-Route::post('/supplies', [App\Http\Controllers\SuppliesController::class, 'store'])->middleware(['auth'])->name('supplies.store');
-Route::get('/supplies/{id}', [App\Http\Controllers\SuppliesController::class, 'show'])->middleware(['auth'])->name('supplies.show'); 
-Route::get('/supplies/{id}/edit', [App\Http\Controllers\SuppliesController::class, 'edit'])->middleware(['auth'])->name('supplies.edit');
-Route::put('/supplies/{id}', [App\Http\Controllers\SuppliesController::class, 'update'])->middleware(['auth'])->name('supplies.update');
-Route::delete('supplies/{id}', [App\Http\Controllers\SuppliesController::class, 'destroy'])->middleware(['auth'])->name('supplies.destroy');
+Route::get('/home', [HomeController::class, 'index'])->middleware(['auth'])->name('');
+Route::get('/supplies', [SuppliesController::class, 'index'])->middleware(['auth'])->name('supplies.index');
+Route::get('/supplies/create', [SuppliesController::class, 'create'])->middleware(['auth'])->name('supplies.create');
+Route::post('/supplies', [SuppliesController::class, 'store'])->middleware(['auth'])->name('supplies.store');
+Route::get('/supplies/{id}', [SuppliesController::class, 'show'])->middleware(['auth'])->name('supplies.show'); 
+Route::get('/supplies/{id}/edit', [SuppliesController::class, 'edit'])->middleware(['auth'])->name('supplies.edit');
+Route::put('/supplies/{id}', [SuppliesController::class, 'update'])->middleware(['auth'])->name('supplies.update');
+Route::delete('supplies/{id}', [SuppliesController::class, 'destroy'])->middleware(['auth'])->name('supplies.destroy');
 
-Route::get('/profile', [App\Http\Controllers\ProfileController::class, 'index'])->middleware(['auth'])->name('profile.index');
-Route::get('/profile/change-password', [App\Http\Controllers\ProfileController::class, 'changepassword'])->middleware(['auth'])->name('profile.changepassword');
-Route::post('/profile/change-password', [App\Http\Controllers\ProfileController::class, 'updatepassword'])->middleware(['auth'])->name('profile.updatepassword');
+Route::get('/profile', [ProfileController::class, 'index'])->middleware(['auth'])->name('profile.index');
+Route::get('/profile/change-password', [ProfileController::class, 'changepassword'])->middleware(['auth'])->name('profile.changepassword');
+Route::post('/profile/change-password', [ProfileController::class, 'updatepassword'])->middleware(['auth'])->name('profile.updatepassword');
 //upload file trial
-Route::get('/profile/upload', [App\Http\Controllers\ProfileController::class, 'upload'])->name('profile.upload');
-Route::post('/profile/upload', [App\Http\Controllers\ProfileController::class, 'uploadimage'])->name('profile.uploadimage');
+Route::get('/profile/upload', [ProfileController::class, 'upload'])->middleware(['auth'])->name('profile.upload');
+Route::post('/profile/upload', [ProfileController::class, 'uploadimage'])->middleware(['auth'])->name('profile.uploadimage');
