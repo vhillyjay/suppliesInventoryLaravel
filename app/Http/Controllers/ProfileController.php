@@ -19,7 +19,7 @@ class ProfileController extends Controller
     public function index()
     {
         //
-        $contents = Storage::get('/storage/app/profilephoto/BdUymoZe7NusJ0SHtuoel8Qr10OSkrvz2ql95xm1.png');
+        $contents = Storage::get('kxbh4JPyJy7rgaLPE6qblEIcqd4GBDeBHQlsKe02.jpg');
         // if (Storage::disk('public')->exists('/storage/app/profilephoto/BdUymoZe7NusJ0SHtuoel8Qr10OSkrvz2ql95xm1.png')) {
         //     return "here";
         // }
@@ -136,7 +136,7 @@ class ProfileController extends Controller
 
     public function uploadimage(Request $request)
     {
-        $path = $request->file('profilePhoto')->store('profilephoto');
+        $path = $request->file('profilePhoto')->store('public/profilephoto');
         // return $path;
         dd($request->all());
     }
