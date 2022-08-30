@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 class ProfileController extends Controller
 {
@@ -18,7 +19,14 @@ class ProfileController extends Controller
     public function index()
     {
         //
-        return view('profile.index');
+        $contents = Storage::get('/storage/app/profilephoto/BdUymoZe7NusJ0SHtuoel8Qr10OSkrvz2ql95xm1.png');
+        // if (Storage::disk('public')->exists('/storage/app/profilephoto/BdUymoZe7NusJ0SHtuoel8Qr10OSkrvz2ql95xm1.png')) {
+        //     return "here";
+        // }
+        // else {
+        //     return "nothere";
+        // }
+        return view('profile.index', ['contents' => $contents]);
     }
 
     /**
@@ -118,5 +126,18 @@ class ProfileController extends Controller
             'password' => Hash::make($request->new_password)
         ]));
         return back()->with('success', 'Password changed successfully!');
+    }
+
+    //upload file trial
+    public function upload()
+    {
+        return view('profile.upload');
+    }
+
+    public function uploadimage(Request $request)
+    {
+        $path = $request->file('profilePhoto')->store('profilephoto');
+        // return $path;
+        dd($request->all());
     }
 }

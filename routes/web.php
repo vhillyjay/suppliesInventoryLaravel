@@ -38,3 +38,6 @@ Route::delete('supplies/{id}', [App\Http\Controllers\SuppliesController::class, 
 Route::get('/profile', [App\Http\Controllers\ProfileController::class, 'index'])->middleware(['auth'])->name('profile.index');
 Route::get('/profile/change-password', [App\Http\Controllers\ProfileController::class, 'changepassword'])->middleware(['auth'])->name('profile.changepassword');
 Route::post('/profile/change-password', [App\Http\Controllers\ProfileController::class, 'updatepassword'])->middleware(['auth'])->name('profile.updatepassword');
+//upload file trial
+Route::get('/profile/upload', [App\Http\Controllers\ProfileController::class, 'upload'])->name('profile.upload');
+Route::post('/profile/upload', [App\Http\Controllers\ProfileController::class, 'uploadimage'])->name('profile.uploadimage');

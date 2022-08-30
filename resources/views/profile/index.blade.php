@@ -18,6 +18,8 @@
             <!-- Card Body -->
             <div class="card-body">
                 body
+                <a href="{{ route('profile.upload') }}">upload</a>
+                {{ $contents }}
             </div>
         </div>
     </div>
