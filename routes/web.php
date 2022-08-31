@@ -41,6 +41,6 @@ Route::delete('supplies/{id}', [SuppliesController::class, 'destroy'])->middlewa
 Route::get('/profile', [ProfileController::class, 'index'])->middleware(['auth'])->name('profile.index');
 Route::get('/profile/change-password', [ProfileController::class, 'changepassword'])->middleware(['auth'])->name('profile.changepassword');
 Route::post('/profile/change-password', [ProfileController::class, 'updatepassword'])->middleware(['auth'])->name('profile.updatepassword');
-//upload file trial
-Route::get('/profile/upload', [ProfileController::class, 'upload'])->middleware(['auth'])->name('profile.upload');
-Route::post('/profile/upload', [ProfileController::class, 'uploadimage'])->middleware(['auth'])->name('profile.uploadimage');
+//trial2
+Route::get('/profile/{id}/edit', [ProfileController::class, 'edit'])->middleware(['auth'])->name('profile.edit');
+Route::put('/profile/{id}', [ProfileController::class, 'update'])->middleware(['auth'])->name('profile.update');
