@@ -44,3 +44,5 @@ Route::post('/profile/change-password', [ProfileController::class, 'updatepasswo
 //trial2
 Route::get('/profile/{id}/edit', [ProfileController::class, 'edit'])->middleware(['auth'])->name('profile.edit');
 Route::put('/profile/{id}', [ProfileController::class, 'update'])->middleware(['auth'])->name('profile.update');
+//downloadtrial
+Route::get('/profile/{id}/download', [SuppliesController::class, 'downloadimage'])->middleware(['auth'])->name('supplies.downloadimage');
