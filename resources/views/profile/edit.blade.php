@@ -3,6 +3,7 @@
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h3 mb-0 text-gray-800">My Profile</h1>
 </div>
+{{ $profile->id }} my id
 
 <div class="row">
 
@@ -17,7 +18,7 @@
             </div>
             <!-- Card Body -->
             <div class="card-body">
-                <form action=" {{ route('profile.update', Auth::user()->id) }} " method="POST" enctype="multipart/form-data">
+                <form action=" {{ route('profile.update', $profile->id) }} " method="POST" enctype="multipart/form-data">
                 @csrf     
                 @method('PUT') 
                 IMAGE HERE
@@ -44,15 +45,15 @@
                 @method('PUT')             -->
                     <div class="input-group my-2">
                         <span class="input-group-text" id="basic-addon1">ID:</span>
-                        <input type="text" id="id" name="id" disabled value="{{ Auth::user()->id }}" class="form-control" aria-label="" aria-describedby="basic-addon1">
+                        <input type="text" id="id" name="id" disabled value="{{ $profile->id }}" class="form-control" aria-label="" aria-describedby="basic-addon1">
                     </div>
                     <div class="input-group my-2">
                         <span class="input-group-text" id="basic-addon1">Name</span>
-                        <input type="text" id="name" name="name" disabled value="{{ Auth::user()->name }}" class="form-control" aria-label="" aria-describedby="basic-addon1">
+                        <input type="text" id="name" name="name" disabled value="{{ $profile->name }}" class="form-control" aria-label="" aria-describedby="basic-addon1">
                     </div>
                     <div class="input-group my-2">
                         <span class="input-group-text" id="">Email</span>
-                        <input type="text" id="email" name="email" disabled value="{{ Auth::user()->email }}" class="form-control" aria-label="" aria-describedby="">
+                        <input type="text" id="email" name="email" disabled value="{{ $profile->email }}" class="form-control" aria-label="" aria-describedby="">
                     </div>
 
                     <!-- <a href=" {{ route('profile.update', Auth::user()->id) }} " class="btn btn-outline-primary">Confirm Changes</a> -->
