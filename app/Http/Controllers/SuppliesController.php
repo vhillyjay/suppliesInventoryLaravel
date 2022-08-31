@@ -44,9 +44,13 @@ class SuppliesController extends Controller
             'productName' => 'required|unique:supplies,name',
             'productPrice' => 'numeric|min:0|between:0,1000000.99',
             'productQuantity' => 'integer|min:0',
+            'productImage' => 'mimes:jpg,png,jpeg,JPG,PNG,JPEG',
         ]);
         // dd($request->all());
         // key is the input name from supplies.create
+
+        $productImageName = time() . '-' . $request->productImage->getClientOriginalName();
+        $publicPath = $request->productImage->move(public_path('img/product'), $productImageName);
 
         $supplies = new Supplies();
         $supplies->name = $request->productName;
@@ -61,9 +65,9 @@ class SuppliesController extends Controller
         }
         $supplies->price = $request->productPrice;
         $supplies->quantity = $request->productQuantity;
+        $supplies->image = $productImageName;
         $supplies->save();
         return redirect('/supplies/create')->with('success', 'Product added successfully!');;
-
     }
 
     /**
@@ -105,6 +109,7 @@ class SuppliesController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
+            'productName' => 'required|unique:supplies,name',
             'productPrice' => 'numeric|min:0|between:0,1000000.99',
             'productQuantity' => 'integer|min:0',
         ]);

@@ -9,7 +9,7 @@
                 <h6 class="m-0 font-weight-bold text-primary">Create New Product</h6>
             </div>
             <div class="card-body">
-                <form action=" {{ route('supplies.store') }} " method="POST">
+                <form action=" {{ route('supplies.store') }} " method="POST" enctype="multipart/form-data">
                     @csrf
                     <input type="text" class="form-control my-2" id="productName" name="productName" placeholder="Name" >
                         @error('productName')
@@ -23,6 +23,10 @@
                         @enderror
                     <input type="number" class="form-control my-2" id="productQuantity" name="productQuantity" placeholder="Quantity">
                         @error('productQuantity')
+                            <span class="text-danger"> {{ $message }} </span>
+                        @enderror
+                    <input type="file" name="productImage" id="productImage">
+                        @error('productImage')
                             <span class="text-danger"> {{ $message }} </span>
                         @enderror
                     <div class="align-items-end">

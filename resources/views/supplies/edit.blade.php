@@ -30,6 +30,9 @@
                         <span class="input-group-text" id="basic-addon1">Name</span>
                         <input type="text" id="productName" name="productName" value="{{ $supplies->name }}" class="form-control" aria-label="" aria-describedby="basic-addon1">
                     </div>
+                        @error('productName')
+                            <span class="text-danger"> {{ $message }} </span>
+                        @enderror
                     <div class="input-group my-2">
                         <span class="input-group-text" id="">Type</span>
                         <input type="text" id="productType" name="productType" value="{{ $supplies->type }}" class="form-control" aria-label="" aria-describedby="">
