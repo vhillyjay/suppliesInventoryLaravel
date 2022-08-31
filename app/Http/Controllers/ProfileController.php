@@ -80,10 +80,15 @@ class ProfileController extends Controller
      * @param  \App\Models\Profile  $profile
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Profile $profile)
+    public function update(Request $request, $id)
     {
         //
-        return "updated";
+        $request->validate([
+            'profileImage' => 'mimes:jpg,png,jpeg',
+        ]);
+        $profileImageName = time() . '-' . $request->profileImage->getClientOriginalName();
+        // dd($request->$profileImageName);
+        return $profileImageName;
     }
 
     /**

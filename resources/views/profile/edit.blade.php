@@ -17,9 +17,14 @@
             </div>
             <!-- Card Body -->
             <div class="card-body">
+                <form action=" {{ route('profile.update', Auth::user()->id) }} " method="POST" enctype="multipart/form-data">
+                @csrf     
+                @method('PUT') 
                 IMAGE HERE
                 <input type="file" name="profileImage" id="profileImage">
-                
+                    @error('profileImage')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
             </div>
         </div>
     </div>
@@ -34,9 +39,9 @@
             </div>
             <!-- Card Body -->
             <div class="card-body">
-                <form action=" {{ route('profile.update', Auth::user()->id) }} " method="POST">
+                <!-- <form action=" {{ route('profile.update', Auth::user()->id) }} " method="POST">
                 @csrf     
-                @method('PUT')            
+                @method('PUT')             -->
                     <div class="input-group my-2">
                         <span class="input-group-text" id="basic-addon1">ID:</span>
                         <input type="text" id="" name="" disabled value="{{ Auth::user()->id }}" class="form-control" aria-label="" aria-describedby="basic-addon1">

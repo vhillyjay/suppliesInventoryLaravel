@@ -110,7 +110,7 @@
                                     <?php $count++; ?>
                             @endforeach
                         @else
-                            <span>No recent products noob</span>
+                            <span>No recent products</span>
                         @endif
                 </div>
             </div>

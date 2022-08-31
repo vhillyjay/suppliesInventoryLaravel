@@ -19,7 +19,7 @@
             <div class="card-body">
                 body - IMAGE HERE <br>
                 <img src="" alt="image">
-                <!-- <a href="{{ route('profile.upload') }}">upload</a> -->
+                
                 {{ $contents }}
             </div>
         </div>
