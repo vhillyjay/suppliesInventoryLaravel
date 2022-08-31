@@ -67,9 +67,10 @@ class ProfileController extends Controller
      * @param  \App\Models\Profile  $profile
      * @return \Illuminate\Http\Response
      */
-    public function edit(Profile $profile)
+    public function edit($id)
     {
         //
+        return view('profile.edit');
     }
 
     /**
@@ -82,6 +83,7 @@ class ProfileController extends Controller
     public function update(Request $request, Profile $profile)
     {
         //
+        return "updated";
     }
 
     /**
@@ -126,18 +128,5 @@ class ProfileController extends Controller
             'password' => Hash::make($request->new_password)
         ]));
         return back()->with('success', 'Password changed successfully!');
-    }
-
-    //upload file trial
-    public function upload()
-    {
-        return view('profile.upload');
-    }
-
-    public function uploadimage(Request $request)
-    {
-        $path = $request->file('profilePhoto')->store('public/profilephoto');
-        // return $path;
-        dd($request->all());
     }
 }

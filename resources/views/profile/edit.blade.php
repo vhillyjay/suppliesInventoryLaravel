@@ -12,15 +12,14 @@
             <!-- Card Header - Dropdown -->
             <div
                 class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                <h6 class="m-0 font-weight-bold text-primary">Lorem Ipsum</h6>
+                <h6 class="m-0 font-weight-bold text-primary">Upload Image</h6>
                 
             </div>
             <!-- Card Body -->
             <div class="card-body">
-                body - IMAGE HERE <br>
-                <img src="" alt="image">
-                <!-- <a href="{{ route('profile.upload') }}">upload</a> -->
-                {{ $contents }}
+                IMAGE HERE
+                <input type="file" name="profileImage" id="profileImage">
+                
             </div>
         </div>
     </div>
@@ -31,12 +30,13 @@
             <!-- Card Header - Dropdown -->
             <div
                 class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                <h6 class="m-0 font-weight-bold text-primary">Personal Information</h6>
+                <h6 class="m-0 font-weight-bold text-primary">Update Personal Information</h6>
             </div>
             <!-- Card Body -->
             <div class="card-body">
-                <form action="  " method="">
-                @csrf                 
+                <form action=" {{ route('profile.update', Auth::user()->id) }} " method="POST">
+                @csrf     
+                @method('PUT')            
                     <div class="input-group my-2">
                         <span class="input-group-text" id="basic-addon1">ID:</span>
                         <input type="text" id="" name="" disabled value="{{ Auth::user()->id }}" class="form-control" aria-label="" aria-describedby="basic-addon1">
@@ -50,12 +50,13 @@
                         <input type="text" id="" name="" disabled value="{{ Auth::user()->email }}" class="form-control" aria-label="" aria-describedby="">
                     </div>
 
-                    <a href=" {{ route('profile.edit', Auth::user()->id) }} " class="btn btn-outline-primary">Update</a>
+                    <!-- <a href=" {{ route('profile.update', Auth::user()->id) }} " class="btn btn-outline-primary">Confirm Changes</a> -->
+                    <input type="submit" value="Confirm Changes" class="btn btn-outline-primary">
                 </form>
             </div>
         </div>
     </div>
 
 </div>
-
+    
 @endsection
