@@ -26,7 +26,10 @@ class ProfileController extends Controller
         // else {
         //     return "nothere";
         // }
-        return view('profile.index', ['contents' => $contents]);
+        $profile = User::all();
+        return view('profile.index', [
+            'profile' => $profile,
+        ]);
     }
 
     /**
@@ -70,7 +73,10 @@ class ProfileController extends Controller
     public function edit($id)
     {
         //
-        return view('profile.edit');
+        $profile = User::findOrFail($id);
+        return view('profile.edit', [
+            'profile' => $profile,
+        ]);
     }
 
     /**
@@ -87,13 +93,14 @@ class ProfileController extends Controller
             'profileImage' => 'mimes:jpg,png,jpeg',
         ]);
         $profileImageName = time() . '-' . $request->profileImage->getClientOriginalName();
-        $request->profileImage->move(public_path('img/profile', $profileImageName));
-        // $profile = User::findOrFail($id);
+        $request->profileImage->move(public_path('img/profile'), $profileImageName);
+        $profile = User::findOrFail($id);
         // $profile->name = $request->name;
         // $profile->email = $request->email;
-        // $profile->image_path = $profileImageName;
-        // $profile->save();
+        $profile->image_path = $profileImageName;
+        $profile->update();
         // dd($request->$profileImageName);
+        return redirect('/profile');
     }
 
     /**

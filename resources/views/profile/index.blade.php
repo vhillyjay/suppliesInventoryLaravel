@@ -18,9 +18,7 @@
             <!-- Card Body -->
             <div class="card-body">
                 body - IMAGE HERE <br>
-                <img src="" alt="image">
-                
-                {{ $contents }}
+                <img src="{{ asset('img/profile/' . Auth::user()->image_path) }}" alt="image">
             </div>
         </div>
     </div>
