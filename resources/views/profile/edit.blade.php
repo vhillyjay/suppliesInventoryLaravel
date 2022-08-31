@@ -3,7 +3,7 @@
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h3 mb-0 text-gray-800">My Profile</h1>
 </div>
-{{ $profile->id }} my id
+<!-- {{ $profile->id }} my id -->
 
 <div class="row">
 
@@ -21,7 +21,8 @@
                 <form action=" {{ route('profile.update', $profile->id) }} " method="POST" enctype="multipart/form-data">
                 @csrf     
                 @method('PUT') 
-                IMAGE HERE
+                <img src="{{ asset('img/profile/' . Auth::user()->image_path) }}" alt="profile image"
+                    style="height:150px" class="rounded mx-auto d-block">
                 <input type="file" name="profileImage" id="profileImage">
                     @error('profileImage')
                         <span class="text-danger">{{ $message }}</span>
@@ -49,7 +50,7 @@
                     </div>
                     <div class="input-group my-2">
                         <span class="input-group-text" id="basic-addon1">Name</span>
-                        <input type="text" id="name" name="name" disabled value="{{ $profile->name }}" class="form-control" aria-label="" aria-describedby="basic-addon1">
+                        <input type="text" id="name" name="name" value="{{ $profile->name }}" class="form-control" aria-label="" aria-describedby="basic-addon1">
                     </div>
                     <div class="input-group my-2">
                         <span class="input-group-text" id="">Email</span>

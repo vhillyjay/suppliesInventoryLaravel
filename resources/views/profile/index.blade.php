@@ -17,8 +17,8 @@
             </div>
             <!-- Card Body -->
             <div class="card-body">
-                body - IMAGE HERE <br>
-                <img src="{{ asset('img/profile/' . Auth::user()->image_path) }}" alt="image">
+                <img src="{{ asset('img/profile/' . Auth::user()->image_path) }}" alt="profile image"
+                    style="height:150px" class="rounded mx-auto d-block">
             </div>
         </div>
     </div>

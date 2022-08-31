@@ -92,15 +92,35 @@ class ProfileController extends Controller
         $request->validate([
             'profileImage' => 'mimes:jpg,png,jpeg',
         ]);
-        $profileImageName = time() . '-' . $request->profileImage->getClientOriginalName();
-        $request->profileImage->move(public_path('img/profile'), $profileImageName);
-        $profile = User::findOrFail($id);
-        // $profile->name = $request->name;
-        // $profile->email = $request->email;
-        $profile->image_path = $profileImageName;
-        $profile->update();
-        // dd($request->$profileImageName);
-        return redirect('/profile');
+
+        if ($request->profileImage === NULL) {
+            // dd($request->all());
+            $profile = User::findOrFail($id);
+            $defaultImage = 'user.png';
+            $profile->image_path = $defaultImage;
+            $profile->update();
+            return redirect('/profile');
+        } else {
+            $profileImageName = time() . '-' . $request->profileImage->getClientOriginalName();
+            $request->profileImage->move(public_path('img/profile'), $profileImageName);
+            $profile = User::findOrFail($id);
+            // $profile->name = $request->name;
+            // $profile->email = $request->email;
+            $profile->image_path = $profileImageName;
+            $profile->update();
+            // dd($request->$profileImageName);
+            return redirect('/profile');
+        }
+
+        // $profileImageName = time() . '-' . $request->profileImage->getClientOriginalName();
+        // $request->profileImage->move(public_path('img/profile'), $profileImageName);
+        // $profile = User::findOrFail($id);
+        // // $profile->name = $request->name;
+        // // $profile->email = $request->email;
+        // $profile->image_path = $profileImageName;
+        // $profile->update();
+        // // dd($request->$profileImageName);
+        // return redirect('/profile');
     }
 
     /**
