@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Supplies;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Response;
 
 class SuppliesController extends Controller
 {
@@ -80,7 +82,9 @@ class SuppliesController extends Controller
     public function show($id)
     {
         $supplies = Supplies::findOrFail($id);
-        return view('supplies.show', ['supplies' => $supplies]);
+        return view('supplies.show', [
+            'supplies' => $supplies,
+        ]);
         //
     }
 
@@ -94,7 +98,9 @@ class SuppliesController extends Controller
     public function edit($id)
     {
         $supplies = Supplies::findOrFail($id);
-        return view('supplies.edit', ['supplies' => $supplies]);
+        return view('supplies.edit', [
+            'supplies' => $supplies,
+        ]);
         //
     }
 
@@ -137,5 +143,29 @@ class SuppliesController extends Controller
         $supplies->delete();
         return redirect('/supplies');
         //
+    }
+
+    public function downloadimage(Request $request, $id)
+    {
+        $supplies = Supplies::findOrFail($id);
+        // $download = public_path('img/product/') . $supplies->image;
+        // $headers = array(
+        //     'Content-Type: image/jpeg',
+        // );
+        // // return $download;
+        // return Response::download($download, 'productimage.jpg', $headers);
+        if ($supplies->image === NULL) {
+            // return "no product image";
+            return back()->with('notify', 'No Product Image');
+        } 
+        else {
+            $supplies = Supplies::findOrFail($id);
+            $download = public_path('img/product/') . $supplies->image;
+            $headers = array(
+                'Content-Type: image/jpeg',
+            );
+            // return $download;
+            return Response::download($download, 'productimage.jpg', $headers);
+        }
     }
 }

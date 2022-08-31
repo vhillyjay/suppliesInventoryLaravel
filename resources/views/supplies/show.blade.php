@@ -20,7 +20,7 @@
     <!-- <form action="/supplies/{{ $supplies->id }}" method="POST"> -->
     <!-- <a href="/supplies/{{ $supplies->id }}/edit">update</a> -->
 
-<div class="row justify-content-center align-items-center">
+<div class="row justify-content-center"> <!--align-items-center-->
     <div class="col-lg-6">
         <div class="card shadow mb-4">
             <div class="card-header py-3">
@@ -46,5 +46,20 @@
             </div>
         </div>
     </div>
+    <div class="col-lg-4">
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Product Image</h6>
+            </div>
+            <div class="card-body">
+                <img src="{{ asset('img/product/' . $supplies->image) }}" alt="Product Image"
+                    style="height:150px" class="rounded mx-auto d-block">
+                <br>
+                <a href="{{ route('supplies.downloadimage', $supplies->id) }}" class="btn btn-outline-primary">Download Image</a>
+                <p> {{ session('notify') }} </p>
+            </div>
+        </div>
+    </div>
+    
 </div>
 @endsection
