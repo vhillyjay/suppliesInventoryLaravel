@@ -23,6 +23,7 @@ return new class extends Migration
             // $table->integer('price');
             $table->decimal('price', 5, 2);
             $table->integer('quantity');
+            $table->string('image')->nullable();
             // $table->double('price', 8, 2);
         });
     }
