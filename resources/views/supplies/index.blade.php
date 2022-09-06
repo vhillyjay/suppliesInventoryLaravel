@@ -56,6 +56,14 @@
             </div>
         </div>
     </div>
-    <p> {{ session('productConfirmation') }} </p>
+    @if(session('productConfirmation'))
+        <div class="alert alert-success text-center" role="alert">
+            {{ session('productConfirmation') }}
+        </div>
+    @elseif(session('productDeletion'))
+        <div class="alert alert-danger text-center" role="alert">
+            {{ session('productDeletion') }}
+        </div>
+    @endif
 
 @endsection
