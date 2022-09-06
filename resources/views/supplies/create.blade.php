@@ -25,7 +25,7 @@
                         @error('productQuantity')
                             <span class="text-danger"> {{ $message }} </span>
                         @enderror
-                    <input type="file" name="productImage" id="productImage">
+                    <input type="file" name="productImage" id="productImage" class="form-control my-2">
                         @error('productImage')
                             <span class="text-danger"> {{ $message }} </span>
                         @enderror
@@ -33,9 +33,9 @@
                         <input type="submit" value="Submit" class="btn btn-outline-primary">
                         <!-- align end -->
                     </div>
-                    @if(session('success'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('success') }}
+                    @if(session('productAddition'))
+                        <div class="alert alert-success text-center" role="alert">
+                            {{ session('productAddition') }}
                         </div>
                     @elseif(session('error'))
                         <div class="alert alert-danger" role="alert">
