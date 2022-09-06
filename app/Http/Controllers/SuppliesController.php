@@ -154,6 +154,13 @@ class SuppliesController extends Controller
         // );
         // // return $download;
         // return Response::download($download, 'productimage.jpg', $headers);
+        // $path = public_path('img/product/') . $supplies->image;
+        // if (Storage::disk('/img/product/')->exists($supplies->image)) {
+        //     return "success";
+        // } else {
+        //     return "fail";
+        // }
+
         if ($supplies->image === NULL) {
             // return "no product image";
             return back()->with('notify', 'No Product Image');

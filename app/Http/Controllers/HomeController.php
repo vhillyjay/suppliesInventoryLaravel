@@ -27,10 +27,16 @@ class HomeController extends Controller
         $grossAmountCounter = 0;
             foreach ($homeGrossAmount as $totalGrossAmount) {
         
-            } 
+            }
+        $quantityPerItem = DB::table('supplies')->pluck('quantity');
+        $pricePerItem = DB::table('supplies')->pluck('price'); 
+        // $grossTry = $quantityPerItem * $pricePerItem;
         return view('home', [
             'home' => $home,
             'totalCounter' => $totalCounter,
+            'quantityPerItem' => $quantityPerItem,
+            'pricePerItem' => $pricePerItem,
+            // 'grossTry' => $grossTry,
         ]);
         //
     }
