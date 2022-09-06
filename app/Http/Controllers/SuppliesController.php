@@ -51,25 +51,60 @@ class SuppliesController extends Controller
         // dd($request->all());
         // key is the input name from supplies.create
 
-        $productImageName = time() . '-' . $request->productImage->getClientOriginalName();
-        $publicPath = $request->productImage->move(public_path('img/product'), $productImageName);
-
-        $supplies = new Supplies();
-        $supplies->name = $request->productName;
-        // $supplies->name = $request->validate([
-        //     'name' => 'unique:name'
-        // ]);
-        $supplies->type = $request->productType;
-        if ($request->productBrand === NULL) {
-            $supplies->brand = 'N/A';
+        if ($request->productImage === NULL) {
+            $supplies = new Supplies();
+            $supplies->name = $request->productName;
+            $supplies->type = $request->productType;
+            if ($request->productBrand === NULL) {
+                $supplies->brand = 'N/A';
+            } else {
+                $supplies->brand = $request->productBrand;
+            }
+            $supplies->price = $request->productPrice;
+            $supplies->quantity = $request->productQuantity;
+            $supplies->save();
+            return redirect('/supplies/create')->with('success', 'Product added successfully!');
         } else {
-            $supplies->brand = $request->productBrand;
+            $productImageName = time() . '-' . $request->productImage->getClientOriginalName();
+            $publicPath = $request->productImage->move(public_path('img/product'), $productImageName);
+    
+            $supplies = new Supplies();
+            $supplies->name = $request->productName;
+            // $supplies->name = $request->validate([
+            //     'name' => 'unique:name'
+            // ]);
+            $supplies->type = $request->productType;
+            if ($request->productBrand === NULL) {
+                $supplies->brand = 'N/A';
+            } else {
+                $supplies->brand = $request->productBrand;
+            }
+            $supplies->price = $request->productPrice;
+            $supplies->quantity = $request->productQuantity;
+            $supplies->image = $productImageName;
+            $supplies->save();
+            return redirect('/supplies/create')->with('success', 'Product added successfully!');
         }
-        $supplies->price = $request->productPrice;
-        $supplies->quantity = $request->productQuantity;
-        $supplies->image = $productImageName;
-        $supplies->save();
-        return redirect('/supplies/create')->with('success', 'Product added successfully!');;
+
+        // $productImageName = time() . '-' . $request->productImage->getClientOriginalName();
+        // $publicPath = $request->productImage->move(public_path('img/product'), $productImageName);
+
+        // $supplies = new Supplies();
+        // $supplies->name = $request->productName;
+        // // $supplies->name = $request->validate([
+        // //     'name' => 'unique:name'
+        // // ]);
+        // $supplies->type = $request->productType;
+        // if ($request->productBrand === NULL) {
+        //     $supplies->brand = 'N/A';
+        // } else {
+        //     $supplies->brand = $request->productBrand;
+        // }
+        // $supplies->price = $request->productPrice;
+        // $supplies->quantity = $request->productQuantity;
+        // $supplies->image = $productImageName;
+        // $supplies->save();
+        // return redirect('/supplies/create')->with('success', 'Product added successfully!');
     }
 
     /**

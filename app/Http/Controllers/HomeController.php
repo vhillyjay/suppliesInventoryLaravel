@@ -17,26 +17,42 @@ class HomeController extends Controller
     public function index()
     {
         // $home = Supplies::orderBy('updated_at', 'desc')->get();
-        $home = DB::table('supplies')->orderBy('updated_at', 'desc')->get();
-        $homeTotalSupplies = DB::table('supplies')->pluck('quantity');
+        $home = DB::table('supplies')
+            ->orderBy('updated_at', 'desc')
+            ->get();
+        $homeTotalSupplies = DB::table('supplies')
+            ->pluck('quantity');
         $totalCounter = 0;
             foreach ($homeTotalSupplies as $totalSupplies) {
                 $totalCounter += $totalSupplies;
             }; // echo "-" . $totalCounter;
-        $homeGrossAmount = DB::table('supplies')->pluck('price');
+        $homeGrossAmount = DB::table('supplies')
+            ->pluck('price');
         $grossAmountCounter = 0;
             foreach ($homeGrossAmount as $totalGrossAmount) {
         
             }
-        $quantityPerItem = DB::table('supplies')->pluck('quantity');
-        $pricePerItem = DB::table('supplies')->pluck('price'); 
+        $quantityPerItem = DB::table('supplies')
+            ->pluck('quantity');
+                foreach ($quantityPerItem as $qPI) {
+                    echo $qPI . '-';
+                }
+        $pricePerItem = DB::table('supplies')
+            ->pluck('price'); 
+                foreach ($pricePerItem as $pPI) {
+                    echo '/' . $pPI;
+                }
+                echo "=" . $qPI * $pPI;
+
         // $grossTry = $quantityPerItem * $pricePerItem;
+            // dd($pricePerItem->all());
         return view('home', [
             'home' => $home,
             'totalCounter' => $totalCounter,
             'quantityPerItem' => $quantityPerItem,
             'pricePerItem' => $pricePerItem,
             // 'grossTry' => $grossTry,
+            'qPI' => $qPI,
         ]);
         //
     }
