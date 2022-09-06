@@ -66,6 +66,8 @@ class SuppliesController extends Controller
             return redirect('/supplies/create')->with('productAddition', 'Product added successfully!');
         } else {
             $productImageName = time() . '-' . $request->productImage->getClientOriginalName();
+            $imgName = $request->file('productImage')->storeAs('img/product', $productImageName);
+            // dd($imgName);
             $publicPath = $request->productImage->move(public_path('img/product'), $productImageName);
     
             $supplies = new Supplies();
