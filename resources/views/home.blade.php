@@ -78,7 +78,14 @@
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
                                 Pending Requests</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">Gross  </div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">Gross <br>
+                                @foreach($quantityPerItem as $qPI)
+                                    quan {{ $qPI }}
+                                @endforeach 
+                                @foreach($pricePerItem as $pPI)
+                                    pri {{ $pPI }}
+                                @endforeach
+                            </div>
                         </div>
                         <div class="col-auto">
                             <i class="fas fa-comments fa-2x text-gray-300"></i>
