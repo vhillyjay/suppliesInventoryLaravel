@@ -26,26 +26,37 @@ class HomeController extends Controller
             foreach ($homeTotalSupplies as $totalSupplies) {
                 $totalCounter += $totalSupplies;
             }; // echo "-" . $totalCounter;
-        $homeGrossAmount = DB::table('supplies')
-            ->pluck('price');
-        $grossAmountCounter = 0;
-            foreach ($homeGrossAmount as $totalGrossAmount) {
         
-            }
         $quantityPerItem = DB::table('supplies')
             ->pluck('quantity');
                 foreach ($quantityPerItem as $qPI) {
-                    echo $qPI . '-';
+                    // echo $qPI . '-';
                 }
         $pricePerItem = DB::table('supplies')
             ->pluck('price'); 
                 foreach ($pricePerItem as $pPI) {
-                    echo '/' . $pPI;
+                    // echo '/' . $pPI;
                 }
-                echo "=" . $qPI * $pPI;
+                // echo "=" . $qPI * $pPI;
+        $totalAmountPer = Supplies::select(DB::raw('sum(quantity * price) as total'))
+                ->get();
+                foreach($totalAmountPer as $tAP){
+                    echo $tAP;
+                }
+                echo $totalAmountPer;
+                // this is the right computation/still on review tho
 
         // $grossTry = $quantityPerItem * $pricePerItem;
             // dd($pricePerItem->all());
+
+        // $trialq = DB::table('supplies')
+        //     ->select('quantity')
+        //     ->get();
+        // $trialp = DB::table('supplies')
+        //     ->select('price')
+        //     ->get();
+        // echo $trialq . '-' . $trialp;
+        
         return view('home', [
             'home' => $home,
             'totalCounter' => $totalCounter,
@@ -53,6 +64,7 @@ class HomeController extends Controller
             'pricePerItem' => $pricePerItem,
             // 'grossTry' => $grossTry,
             'qPI' => $qPI,
+            // 'trialq' => $trialq,
         ]);
         //
     }
