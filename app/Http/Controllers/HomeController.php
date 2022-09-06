@@ -27,44 +27,21 @@ class HomeController extends Controller
                 $totalCounter += $totalSupplies;
             }; // echo "-" . $totalCounter;
         
-        $quantityPerItem = DB::table('supplies')
-            ->pluck('quantity');
-                foreach ($quantityPerItem as $qPI) {
-                    // echo $qPI . '-';
-                }
-        $pricePerItem = DB::table('supplies')
-            ->pluck('price'); 
-                foreach ($pricePerItem as $pPI) {
-                    // echo '/' . $pPI;
-                }
-                // echo "=" . $qPI * $pPI;
-        $totalAmountPer = Supplies::select(DB::raw('sum(quantity * price) as total'))
-                ->get();
-                foreach($totalAmountPer as $tAP){
-                    echo $tAP;
-                }
-                echo $totalAmountPer;
-                // this is the right computation/still on review tho
+        
+        $productGross = Supplies::select(DB::raw('sum(quantity * price) as total'))
+            ->get();
+            // echo $productGross;
+            // this is the right computation/still on review tho
 
-        // $grossTry = $quantityPerItem * $pricePerItem;
-            // dd($pricePerItem->all());
-
-        // $trialq = DB::table('supplies')
-        //     ->select('quantity')
+        // $testing = Supplies::select(DB::raw('quantity * price'))
         //     ->get();
-        // $trialp = DB::table('supplies')
-        //     ->select('price')
-        //     ->get();
-        // echo $trialq . '-' . $trialp;
+        //     echo 'testing' . $testing;
+        // product(result) of per item / sample item1 with 3quantity and 3price is 3product
         
         return view('home', [
             'home' => $home,
             'totalCounter' => $totalCounter,
-            'quantityPerItem' => $quantityPerItem,
-            'pricePerItem' => $pricePerItem,
-            // 'grossTry' => $grossTry,
-            'qPI' => $qPI,
-            // 'trialq' => $trialq,
+            'productGross' => $productGross,
         ]);
         //
     }
