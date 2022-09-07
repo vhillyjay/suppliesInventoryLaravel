@@ -22,7 +22,7 @@
             </div>
             <div class="card-body">
                 <!-- <form action="/supplies/{{ $supplies->id }}" method="POST"> -->
-                <form action=" {{ route('supplies.update', $supplies->id) }} " method="POST">
+                <form action=" {{ route('supplies.update', $supplies->id) }} " method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
                                        
@@ -55,6 +55,11 @@
                         <input type="number" id="productQuantity" name="productQuantity" value="{{ $supplies->quantity }}" class="form-control" aria-label="" aria-describedby="">
                     </div>
                         @error('productQuantity')
+                            <span class="text-danger"> {{ $message }} </span>
+                        @enderror
+
+                    <input type="file" name="productImage" id="productImage" class="form-control my-2">
+                        @error('productImage')
                             <span class="text-danger"> {{ $message }} </span>
                         @enderror
 

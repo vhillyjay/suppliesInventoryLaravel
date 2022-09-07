@@ -160,20 +160,26 @@ class SuppliesController extends Controller
                 'productName' => 'required',
                 'productPrice' => 'numeric|min:0|between:0,1000000.99',
                 'productQuantity' => 'integer|min:0',
+                'productImage' => 'nullable|mimes:jpg,png,jpeg,JPG,PNG,JPEG',
             ]);
             $supplies = Supplies::findOrFail($id);
+            $productImageName = time() . '-' . $request->productImage->getClientOriginalName();
+            // dd($productImageName);
             $supplies->name = $request->productName;
             $supplies->type = $request->productType;
             $supplies->brand = $request->productBrand;
             $supplies->price = $request->productPrice;
             $supplies->quantity = $request->productQuantity;
+            $supplies->image = $productImageName;
             $supplies->update();
             return redirect('/supplies')->with('productConfirmation', 'Product updated!');
+            // if the updated name is the same as any in the db
         } else {
             $request->validate([
                 'productName' => 'required|unique:supplies,name',
                 'productPrice' => 'numeric|min:0|between:0,1000000.99',
                 'productQuantity' => 'integer|min:0',
+                'productImage' => 'nullable|mimes:jpg,png,jpeg,JPG,PNG,JPEG',
             ]);
             $supplies = Supplies::findOrFail($id);
             $supplies->name = $request->productName;
@@ -181,8 +187,10 @@ class SuppliesController extends Controller
             $supplies->brand = $request->productBrand;
             $supplies->price = $request->productPrice;
             $supplies->quantity = $request->productQuantity;
+            $supplies->image = $productImageName;
             $supplies->update();
             return redirect('/supplies')->with('productConfirmation', 'Product updated!');
+            // if the updated name is not the same as any in the db
         }
     }
 
