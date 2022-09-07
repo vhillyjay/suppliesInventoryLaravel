@@ -58,7 +58,8 @@
                         Product does not have an image.
                     </div>
                 @else
-                    <img src="{{ asset('img/product/'.$supplies->image) }}" alt="Product image from storage"
+                    <img src="{{ asset('img/product/'.$supplies->image) }}" 
+                        alt="Product {{ $supplies->image }} image from storage"
                         style="height:150px" class="rounded mx-auto d-block">
                         <!-- for local/development purpose ==> img src="{{ asset('storage/img/product/'.$supplies->image) }}" -->
                         <!-- will look into public/storage/img/product/theImage -->

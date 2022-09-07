@@ -100,9 +100,30 @@ class SuppliesController extends Controller
     public function show($id)
     {
         $supplies = Supplies::findOrFail($id);
-        return view('supplies.show', [
-            'supplies' => $supplies,
-        ]);
+        if ($supplies->image === NULL) {
+            // return "no product image";
+            return view('supplies.show', [
+                'supplies' => $supplies,
+            ]);
+        } else {
+            if (Storage::disk('local')->exists('public/img/product/' . $supplies->image)) {
+                $imagePathFinder = Storage::disk('local')->path('public/img/product/' . $supplies->image);
+                $supplies = Supplies::findOrFail($id);
+                // echo 'exists';
+                return view('supplies.show', [
+                    'supplies' => $supplies,
+                ]);
+            } else {
+                // return 'image doesnt exists';
+                return view('supplies.show', [
+                    'supplies' => $supplies,
+                ]);
+            }
+        }
+
+        // return view('supplies.show', [
+        //     'supplies' => $supplies,
+        // ]);
         //
     }
 
@@ -210,7 +231,7 @@ class SuppliesController extends Controller
             } else {
                 // return back()->with('notFound', 'Sorry. Image not found');
             }
-            return back()->with('notFound', 'Sorry. Image may not exist.');
+            return back()->with('notFound', 'Sorry. Image  ' . $supplies->image . ' may not exist.');
             // refer to config/filesystems.php for info about disk('local')
             // checks the storage/app/public/img/product/$supplies->image if the image exists
         }
