@@ -60,11 +60,16 @@
                 @else
                     <img src="{{ asset('img/product/' . $supplies->image) }}" alt="Product Image"
                         style="height:150px" class="rounded mx-auto d-block">
-                        <img src="{{ asset('storage/app/img/product/' . $supplies->image) }}" alt="Product Imagefromstorage"
+                        <img src="{{ asset('app/img/product/' . $supplies->image) }}" alt="Product Imagefromstorage"
                         style="height:150px" class="rounded mx-auto d-block">
                     <br>
                     <a href="{{ route('supplies.downloadimage', $supplies->id) }}" class="btn btn-outline-primary">Download Image</a>
                     <p> {{ session('notify') }} </p>
+                    @if(session('notFound'))
+                        <div class="alert alert-danger text-center" role="alert">
+                            {{ session('notFound') }}
+                        </div>
+                    @endif
                 @endif
             </div>
         </div>
