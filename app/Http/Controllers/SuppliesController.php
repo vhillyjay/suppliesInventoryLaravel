@@ -69,7 +69,7 @@ class SuppliesController extends Controller
             // $imgName = $request->file('productImage')->storeAs('img/product', $productImageName);
             $imgName = $request->file('productImage')->storeAs('public/img/product', $productImageName);
             // dd($imgName);
-            // $publicPath = $request->productImage->move(public_path('img/product'), $productImageName);
+            $publicPath = $request->productImage->move(public_path('img/product'), $productImageName);
     
             $supplies = new Supplies();
             $supplies->name = $request->productName;
