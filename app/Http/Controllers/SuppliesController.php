@@ -216,7 +216,24 @@ class SuppliesController extends Controller
 
     public function downloadimage(Request $request, $id)
     {
+        // $userimage = 'user.png';
+        // if (Storage::disk('local')->exists($userimage)) {
+        //     return 'file ' . $userimage . ' in disk';
+        // } else {
+        //     return 'file ' . $userimage . ' not in disk';
+        // } right right
+
         $supplies = Supplies::findOrFail($id);
+        // dd($supplies->image);
+
+        if (Storage::disk('local')->exists('img/product/' . $supplies->image)) {
+            $imagePathFinder = Storage::disk('local')->path('img/product/' . $supplies->image);
+            // dd($imagePathFinder);
+            return 'file ' . $supplies->image . ' in disk';
+        } else {
+            return 'file ' . $supplies->image . ' not in disk';
+        }
+
         // $download = public_path('img/product/') . $supplies->image;
         // $headers = array(
         //     'Content-Type: image/jpeg',

@@ -27,6 +27,7 @@
                 <h6 class="m-0 font-weight-bold text-primary">Product Details</h6>
             </div>
             <div class="card-body">
+                <p> Product ID - {{ $supplies->id }} </p>
                 <p> Supplies name - {{ $supplies->name }} </p> 
                 <p> Supplies type - {{ $supplies->type }} </p>
                 <p> Supplies brand - {{ $supplies->brand }} </p>
