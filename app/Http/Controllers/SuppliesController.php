@@ -66,8 +66,8 @@ class SuppliesController extends Controller
             return redirect('/supplies/create')->with('productAddition', 'Product added successfully!');
         } else {
             $productImageName = time() . '-' . $request->productImage->getClientOriginalName();
-            $imgName = $request->file('productImage')->storeAs('img/product', $productImageName);
-            // $imgName = $request->file('productImage')->storeAs('public/img/product', $productImageName);
+            // $imgName = $request->file('productImage')->storeAs('img/product', $productImageName);
+            $imgName = $request->file('productImage')->storeAs('public/imgproduct', $productImageName);
             // dd($imgName);
             $publicPath = $request->productImage->move(public_path('img/product'), $productImageName);
     
@@ -88,26 +88,6 @@ class SuppliesController extends Controller
             $supplies->save();
             return redirect('/supplies/create')->with('productAddition', 'Product added successfully!');
         }
-
-        // $productImageName = time() . '-' . $request->productImage->getClientOriginalName();
-        // $publicPath = $request->productImage->move(public_path('img/product'), $productImageName);
-
-        // $supplies = new Supplies();
-        // $supplies->name = $request->productName;
-        // // $supplies->name = $request->validate([
-        // //     'name' => 'unique:name'
-        // // ]);
-        // $supplies->type = $request->productType;
-        // if ($request->productBrand === NULL) {
-        //     $supplies->brand = 'N/A';
-        // } else {
-        //     $supplies->brand = $request->productBrand;
-        // }
-        // $supplies->price = $request->productPrice;
-        // $supplies->quantity = $request->productQuantity;
-        // $supplies->image = $productImageName;
-        // $supplies->save();
-        // return redirect('/supplies/create')->with('success', 'Product added successfully!');
     }
 
     /**
@@ -183,21 +163,6 @@ class SuppliesController extends Controller
             $supplies->update();
             return redirect('/supplies')->with('productConfirmation', 'Product updated!');
         }
-
-        // $request->validate([
-        //     'productName' => 'required|unique:supplies,name',
-        //     'productPrice' => 'numeric|min:0|between:0,1000000.99',
-        //     'productQuantity' => 'integer|min:0',
-        // ]);
-        // $supplies = Supplies::findOrFail($id);
-        // $supplies->name = $request->productName;
-        // $supplies->type = $request->productType;
-        // $supplies->brand = $request->productBrand;
-        // $supplies->price = $request->productPrice;
-        // $supplies->quantity = $request->productQuantity;
-        // $supplies->update();
-        // return redirect('/supplies')->with('productConfirmation', 'Product updated');
-        //
     }
 
     /**
@@ -225,8 +190,6 @@ class SuppliesController extends Controller
         // } right right
 
         $supplies = Supplies::findOrFail($id);
-        $xeta = asset('storage/app/img/product/' . $supplies->image);
-        // dd($xeta);
 
         // if (Storage::disk('local')->exists('img/product/' . $supplies->image)) {
         //     $imagePathFinder = Storage::disk('local')->path('img/product/' . $supplies->image);

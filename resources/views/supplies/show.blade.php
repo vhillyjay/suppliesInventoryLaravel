@@ -58,9 +58,8 @@
                         Product does not have an image.
                     </div>
                 @else
-                    <img src="{{ asset('img/product/' . $supplies->image) }}" alt="Product Image"
-                        style="height:150px" class="rounded mx-auto d-block">
-                        <img src="{{ asset('app/img/product/' . $supplies->image) }}" alt="Product Imagefromstorage"
+                {{ $supplies->image }}
+                    <img src="{{ asset('imgproduct/'.$supplies->image) }}" alt="Product image from storage"
                         style="height:150px" class="rounded mx-auto d-block">
                     <br>
                     <a href="{{ route('supplies.downloadimage', $supplies->id) }}" class="btn btn-outline-primary">Download Image</a>
@@ -74,6 +73,6 @@
             </div>
         </div>
     </div>
-    
+
 </div>
 @endsection
