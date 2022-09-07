@@ -224,7 +224,8 @@ class SuppliesController extends Controller
         // } right right
 
         $supplies = Supplies::findOrFail($id);
-        // dd($supplies->image);
+        $xeta = asset('storage/app/img/product/' . $supplies->image);
+        dd($xeta);
 
         if (Storage::disk('local')->exists('img/product/' . $supplies->image)) {
             $imagePathFinder = Storage::disk('local')->path('img/product/' . $supplies->image);
