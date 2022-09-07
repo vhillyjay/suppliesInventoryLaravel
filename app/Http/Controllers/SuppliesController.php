@@ -67,9 +67,9 @@ class SuppliesController extends Controller
         } else {
             $productImageName = time() . '-' . $request->productImage->getClientOriginalName();
             // $imgName = $request->file('productImage')->storeAs('img/product', $productImageName);
-            $imgName = $request->file('productImage')->storeAs('public/imgproduct', $productImageName);
+            $imgName = $request->file('productImage')->storeAs('public/img/product', $productImageName);
             // dd($imgName);
-            $publicPath = $request->productImage->move(public_path('img/product'), $productImageName);
+            // $publicPath = $request->productImage->move(public_path('img/product'), $productImageName);
     
             $supplies = new Supplies();
             $supplies->name = $request->productName;
@@ -191,31 +191,18 @@ class SuppliesController extends Controller
 
         $supplies = Supplies::findOrFail($id);
 
-        // if (Storage::disk('local')->exists('img/product/' . $supplies->image)) {
-        //     $imagePathFinder = Storage::disk('local')->path('img/product/' . $supplies->image);
-        //     // dd($imagePathFinder);
-        //     return 'file ' . $supplies->image . ' in disk';
-        // } else {
-        //     return 'file ' . $supplies->image . ' not in disk';
-        // }
-
         if ($supplies->image === NULL) {
             // return "no product image";
             return back()->with('notify', 'No Product Image');
         } 
         else {
-            // $supplies = Supplies::findOrFail($id);
-            // // $download = public_path('img/product/') . $supplies->image;
+            // if (Storage::disk('local')->exists('img/product/' . $supplies->image)) {
+            //     $imagePathFinder = Storage::disk('local')->path('img/product/' . $supplies->image);
             // $download = storage_path('app/img/product/') . $supplies->image;
-            // $headers = array(
-            //     'Content-Type: image/jpeg',
-            // );
-            // 
-            // return Response::download($download, 'productimage.jpg', $headers);
-            if (Storage::disk('local')->exists('img/product/' . $supplies->image)) {
-                $imagePathFinder = Storage::disk('local')->path('img/product/' . $supplies->image);
+            if (Storage::disk('local')->exists('public/img/product/' . $supplies->image)) {
+                $imagePathFinder = Storage::disk('local')->path('public/img/product/' . $supplies->image);
                 $supplies = Supplies::findOrFail($id);
-                $download = storage_path('app/img/product/') . $supplies->image;
+                $download = storage_path('app/public/img/product/') . $supplies->image;
                 $headers = array(
                     'Content-Type: image/jpeg',
                 );
@@ -224,6 +211,8 @@ class SuppliesController extends Controller
                 // return back()->with('notFound', 'Sorry. Image not found');
             }
             return back()->with('notFound', 'Sorry. Image may not exist.');
+            // refer to config/filesystems.php for info about disk('local')
+            // checks the storage/app/public/img/product/$supplies->image if the image exists
         }
     }
 }

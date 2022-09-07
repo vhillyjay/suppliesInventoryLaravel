@@ -58,9 +58,10 @@
                         Product does not have an image.
                     </div>
                 @else
-                {{ $supplies->image }}
-                    <img src="{{ asset('imgproduct/'.$supplies->image) }}" alt="Product image from storage"
+                    <img src="{{ asset('storage/img/product/'.$supplies->image) }}" alt="Product image from storage"
                         style="height:150px" class="rounded mx-auto d-block">
+                        <!-- will look into public/storage/img/product/theImage -->
+                        <!-- this is because of the connection link using php artisan storage:link -->
                     <br>
                     <a href="{{ route('supplies.downloadimage', $supplies->id) }}" class="btn btn-outline-primary">Download Image</a>
                     <p> {{ session('notify') }} </p>
