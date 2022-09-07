@@ -29,7 +29,7 @@ class HomeController extends Controller
         
         
         $productGross = Supplies::select(DB::raw('sum(quantity * price) as total'))
-            ->get();
+            ->first()->total; // or ->get()[0]->total; or 'productGross' => $productGross[0]['total'] sa return
             // echo $productGross;
             // this is the right computation/still on review tho
 
