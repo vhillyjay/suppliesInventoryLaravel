@@ -175,6 +175,10 @@ class SuppliesController extends Controller
             } else {
                 // echo 'with image';
                 $productImageName = time() . '-' . $request->productImage->getClientOriginalName(); 
+                $updatedImageName = $request->file('productImage')
+                    ->storeAs('public/img/product', $productImageName);
+                $publicPath = $request->productImage
+                    ->move(public_path('img/product'), $productImageName);
                 $supplies->name = $request->productName;
                 $supplies->type = $request->productType;
                 $supplies->brand = $request->productBrand;
@@ -206,6 +210,10 @@ class SuppliesController extends Controller
             } else {
                 // return 'with image';
                 $productImageName = time() . '-' . $request->productImage->getClientOriginalName(); 
+                $updatedImageName = $request->file('productImage')
+                    ->storeAs('public/img/product', $productImageName);
+                $publicPath = $request->productImage
+                    ->move(public_path('img/product'), $productImageName);
                 $supplies->name = $request->productName;
                 $supplies->type = $request->productType;
                 $supplies->brand = $request->productBrand;
