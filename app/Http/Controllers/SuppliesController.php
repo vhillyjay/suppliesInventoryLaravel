@@ -63,7 +63,8 @@ class SuppliesController extends Controller
             $supplies->price = $request->productPrice;
             $supplies->quantity = $request->productQuantity;
             $supplies->save();
-            return redirect('/supplies/create')->with('productAddition', 'Product added successfully!');
+            return redirect('/supplies/create')
+                ->with('productAddition', 'Product added successfully!');
         } else {
             $productImageName = time() . '-' . $request->productImage->getClientOriginalName();
             // $imgName = $request->file('productImage')->storeAs('img/product', $productImageName);
@@ -73,9 +74,6 @@ class SuppliesController extends Controller
     
             $supplies = new Supplies();
             $supplies->name = $request->productName;
-            // $supplies->name = $request->validate([
-            //     'name' => 'unique:name'
-            // ]);
             $supplies->type = $request->productType;
             if ($request->productBrand === NULL) {
                 $supplies->brand = 'N/A';
@@ -86,7 +84,8 @@ class SuppliesController extends Controller
             $supplies->quantity = $request->productQuantity;
             $supplies->image = $productImageName;
             $supplies->save();
-            return redirect('/supplies/create')->with('productAddition', 'Product added successfully!');
+            return redirect('/supplies/create')
+                ->with('productAddition', 'Product added successfully!');
         }
     }
 
@@ -162,18 +161,31 @@ class SuppliesController extends Controller
                 'productQuantity' => 'integer|min:0',
                 'productImage' => 'nullable|mimes:jpg,png,jpeg,JPG,PNG,JPEG',
             ]);
-            $supplies = Supplies::findOrFail($id);
-            $productImageName = time() . '-' . $request->productImage->getClientOriginalName();
-            // dd($productImageName);
-            $supplies->name = $request->productName;
-            $supplies->type = $request->productType;
-            $supplies->brand = $request->productBrand;
-            $supplies->price = $request->productPrice;
-            $supplies->quantity = $request->productQuantity;
-            $supplies->image = $productImageName;
-            $supplies->update();
-            return redirect('/supplies')->with('productConfirmation', 'Product updated!');
-            // if the updated name is the same as any in the db
+            // $supplies = Supplies::findOrFail($id);
+            if ($request->productImage === NULL) {
+                // echo 'no image update';
+                $supplies->name = $request->productName;
+                $supplies->type = $request->productType;
+                $supplies->brand = $request->productBrand;
+                $supplies->price = $request->productPrice;
+                $supplies->quantity = $request->productQuantity;
+                $supplies->update();
+                return redirect('/supplies')
+                    ->with('productConfirmation', 'Product updated!');
+            } else {
+                // echo 'with image';
+                $productImageName = time() . '-' . $request->productImage->getClientOriginalName(); 
+                $supplies->name = $request->productName;
+                $supplies->type = $request->productType;
+                $supplies->brand = $request->productBrand;
+                $supplies->price = $request->productPrice;
+                $supplies->quantity = $request->productQuantity;
+                $supplies->image = $productImageName;
+                $supplies->update();
+                return redirect('/supplies')
+                    ->with('productConfirmation', 'Product updated!'); 
+            }
+        // if the updated name is the same as any in the db
         } else {
             $request->validate([
                 'productName' => 'required|unique:supplies,name',
@@ -181,16 +193,30 @@ class SuppliesController extends Controller
                 'productQuantity' => 'integer|min:0',
                 'productImage' => 'nullable|mimes:jpg,png,jpeg,JPG,PNG,JPEG',
             ]);
-            $supplies = Supplies::findOrFail($id);
-            $supplies->name = $request->productName;
-            $supplies->type = $request->productType;
-            $supplies->brand = $request->productBrand;
-            $supplies->price = $request->productPrice;
-            $supplies->quantity = $request->productQuantity;
-            $supplies->image = $productImageName;
-            $supplies->update();
-            return redirect('/supplies')->with('productConfirmation', 'Product updated!');
-            // if the updated name is not the same as any in the db
+            if ($request->productImage === NULL) {
+                // return 'no image';
+                $supplies->name = $request->productName;
+                $supplies->type = $request->productType;
+                $supplies->brand = $request->productBrand;
+                $supplies->price = $request->productPrice;
+                $supplies->quantity = $request->productQuantity;
+                $supplies->update();
+                return redirect('/supplies')
+                    ->with('productConfirmation', 'Product updated!');
+            } else {
+                // return 'with image';
+                $productImageName = time() . '-' . $request->productImage->getClientOriginalName(); 
+                $supplies->name = $request->productName;
+                $supplies->type = $request->productType;
+                $supplies->brand = $request->productBrand;
+                $supplies->price = $request->productPrice;
+                $supplies->quantity = $request->productQuantity;
+                $supplies->image = $productImageName;
+                $supplies->update();
+                return redirect('/supplies')
+                    ->with('productConfirmation', 'Product updated!');
+            }
+        // if the updated name is not the same as any in the db
         }
     }
 
@@ -205,7 +231,8 @@ class SuppliesController extends Controller
     {
         $supplies = Supplies::findOrFail($id);
         $supplies->delete();
-        return redirect('/supplies')->with('productDeletion', 'Product deleted!');
+        return redirect('/supplies')
+            ->with('productDeletion', 'Product deleted!');
         //
     }
 
