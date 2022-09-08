@@ -19,13 +19,6 @@ class ProfileController extends Controller
     public function index()
     {
         //
-        $contents = Storage::get('kxbh4JPyJy7rgaLPE6qblEIcqd4GBDeBHQlsKe02.jpg');
-        // if (Storage::disk('public')->exists('/storage/app/profilephoto/BdUymoZe7NusJ0SHtuoel8Qr10OSkrvz2ql95xm1.png')) {
-        //     return "here";
-        // }
-        // else {
-        //     return "nothere";
-        // }
         $profile = User::all();
         return view('profile.index', [
             'profile' => $profile,
@@ -96,20 +89,23 @@ class ProfileController extends Controller
         if ($request->profileImage === NULL) {
             // dd($request->all());
             $profile = User::findOrFail($id);
+            $profile->name = $request->name;
             $defaultImage = 'user.png';
             $profile->image_path = $defaultImage;
             $profile->update();
-            return redirect('/profile');
+            return redirect('/profile')
+                ->with('profileUpdate', 'Profile successfully updated!');
         } else {
             $profileImageName = time() . '-' . $request->profileImage->getClientOriginalName();
-            $request->profileImage->move(public_path('img/profile'), $profileImageName);
+            // $request->profileImage->move(public_path('img/profile'), $profileImageName);
             $profile = User::findOrFail($id);
-            // $profile->name = $request->name;
+            $profile->name = $request->name;
             // $profile->email = $request->email;
             $profile->image_path = $profileImageName;
             $profile->update();
             // dd($request->$profileImageName);
-            return redirect('/profile');
+            return redirect('/profile')
+                ->with('profileUpdate', 'Profile successfully updated!');
         }
 
         // $profileImageName = time() . '-' . $request->profileImage->getClientOriginalName();

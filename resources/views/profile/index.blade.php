@@ -17,8 +17,17 @@
             </div>
             <!-- Card Body -->
             <div class="card-body">
-                <img src="{{ asset('img/profile/' . Auth::user()->image_path) }}" alt="profile image"
-                    style="height:150px" class="rounded mx-auto d-block">
+                @if(Auth::user()->image_path === NULL)
+                    <div class="alert alert-danger text-center" role="alert">
+                        Profile does not have an image.
+                    </div>
+                @else
+                    <img src="{{ asset('img/profile/' . Auth::user()->image_path) }}" 
+                        alt="profile image {{ Auth::user()->image_path }}"
+                        style="height:150px" 
+                        class="rounded mx-auto d-block">
+                @endif
+                
             </div>
         </div>
     </div>
@@ -53,6 +62,14 @@
             </div>
         </div>
     </div>
+
+    @if(session('profileUpdate'))
+        <div class="alert alert-success text-center" role="alert">
+            {{ session('profileUpdate') }}
+        </div>
+    @endif
+
+    <!-- {{ Auth::user()->image_path }} -->
 
 </div>
 

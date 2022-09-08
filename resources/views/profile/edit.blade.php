@@ -21,9 +21,19 @@
                 <form action=" {{ route('profile.update', $profile->id) }} " method="POST" enctype="multipart/form-data">
                 @csrf     
                 @method('PUT') 
-                <img src="{{ asset('img/profile/' . Auth::user()->image_path) }}" alt="profile image"
-                    style="height:150px" class="rounded mx-auto d-block">
-                <input type="file" name="profileImage" id="profileImage">
+                @if(Auth::user()->image_path === NULL)
+                    <div class="alert alert-danger text-center" role="alert">
+                        Profile does not have an image.
+                    </div>
+                @else
+                    <img src="{{ asset('img/profile/' . Auth::user()->image_path) }}" 
+                        alt="profile image {{ Auth::user()->image_path }}"
+                        style="height:150px" 
+                        class="rounded mx-auto d-block">
+                @endif
+                <!-- <img src="{{ asset('img/profile/' . Auth::user()->image_path) }}" alt="profile image"
+                    style="height:150px" class="rounded mx-auto d-block"> -->
+                <input type="file" name="profileImage" id="profileImage" class="form-control my-2">
                     @error('profileImage')
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
