@@ -67,6 +67,9 @@ class ProfileController extends Controller
     {
         //
         $profile = User::findOrFail($id);
+        if ($profile->id !== auth()->id()) {
+            abort(403);
+        }
         return view('profile.edit', [
             'profile' => $profile,
         ]);
