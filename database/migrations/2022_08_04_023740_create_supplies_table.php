@@ -17,13 +17,16 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             // creates created_at and updated_at
-            $table->string('name')->unique();
+            $table->string('name')
+                ->unique();
             $table->string('type');
-            $table->string('brand')->nullable();
+            $table->string('brand')
+                ->nullable();
             // $table->integer('price');
             $table->decimal('price', 5, 2);
             $table->integer('quantity');
-            $table->string('image')->nullable();
+            $table->string('image')
+                ->nullable();
             // $table->double('price', 8, 2);
         });
     }
