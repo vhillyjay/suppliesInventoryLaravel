@@ -57,6 +57,10 @@
                     <div class="alert alert-danger text-center" role="alert">
                         Product does not have an image.
                     </div>
+                @elseif(!empty($notFound))
+                    <div class="alert alert-danger text-center" role="alert">
+                        {{ $notFound }}
+                    </div>
                 @else
                     <img src="{{ asset('img/product/'.$supplies->image) }}" 
                         alt="Product {{ $supplies->image }} image from storage"

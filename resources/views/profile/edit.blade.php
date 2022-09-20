@@ -28,7 +28,7 @@
                 @else
                     <img src="{{ asset('img/profile/' . Auth::user()->image_path) }}" 
                         alt="profile image {{ Auth::user()->image_path }}"
-                        style="height:150px" 
+                        style="height:100px" 
                         class="rounded mx-auto d-block">
                 @endif
                 <!-- <img src="{{ asset('img/profile/' . Auth::user()->image_path) }}" alt="profile image"

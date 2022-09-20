@@ -19,10 +19,36 @@ class ProfileController extends Controller
     public function index()
     {
         //
-        $profile = User::all();
-        return view('profile.index', [
-            'profile' => $profile,
-        ]);
+        // $profile = User::all();
+        // return Auth::user()->id;
+        // return view('profile.index', [
+        //     'profile' => $profile,
+        // ]);
+
+        $profile = User::findOrFail(Auth::user()->id);
+        if ($profile->image_path === NULL) {
+            return view('profile.index', [
+                'profile' => $profile,
+            ]);
+        }
+        else {
+            if (Storage::disk('local')->exists('public/img/profile/' . $profile->image_path)) {
+                $imagePathFinder = Storage::disk('local')->path('public/img/profile/' . $profile->image_path);
+                $profile = User::findOrFail(Auth::user()->id);
+                return view('profile.index', [
+                    'profile' => $profile,
+                ]);
+            } else {
+                // return 'not found';
+                return view('profile.index', [
+                    'profile' => $profile,
+                ])->with('notFound', 'Sorry. Image  ' . $profile->image_path . ' may not exist.');
+            }
+            // return view('profile.index', [
+            //     'profile' => $profile,
+            // ])->with('notFound', 'Sorry. Image  ' . $profile->image_path . ' may not exist.');
+            // return 'not null';
+        }
     }
 
     /**
@@ -86,22 +112,25 @@ class ProfileController extends Controller
     {
         //
         $request->validate([
-            'profileImage' => 'mimes:jpg,png,jpeg',
+            'profileImage' => 'nullable|mimes:jpg,png,jpeg',
         ]);
 
         if ($request->profileImage === NULL) {
             // dd($request->all());
             $profile = User::findOrFail($id);
             $profile->name = $request->name;
-            $defaultImage = 'user.png';
-            $profile->image_path = $defaultImage;
+            // $defaultImage = 'user.png';
+            // $profile->image_path = $defaultImage;
             $profile->update();
             return redirect('/profile')
                 ->with('profileUpdate', 'Profile successfully updated!');
         } else {
             $profileImageName = time() . '-' . $request->profileImage->getClientOriginalName();
-            // $request->profileImage->move(public_path('img/profile'), $profileImageName);
             $profile = User::findOrFail($id);
+            $updatedProfileImage = $request->file('profileImage')
+                    ->storeAs('public/img/profile', $profileImageName);
+            $publicPath = $request->profileImage
+                ->move(public_path('img/profile'), $profileImageName);
             $profile->name = $request->name;
             // $profile->email = $request->email;
             $profile->image_path = $profileImageName;

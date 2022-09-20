@@ -116,7 +116,7 @@ class SuppliesController extends Controller
                 // return 'image doesnt exists';
                 return view('supplies.show', [
                     'supplies' => $supplies,
-                ]);
+                ])->with('notFound', 'Sorry. Image  ' . $supplies->image . ' may not exist.');
             }
         }
 
