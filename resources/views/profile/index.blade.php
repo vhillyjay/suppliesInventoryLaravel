@@ -21,12 +21,21 @@
                     <div class="alert alert-danger text-center" role="alert">
                         Profile does not have an image.
                     </div>
+                @elseif(!empty($notFound))
+                    <div class="alert alert-danger text-center" role="alert">
+                        {{ $notFound }}
+                    </div>
                 @else
                     <img src="{{ asset('img/profile/' . Auth::user()->image_path) }}" 
                         alt="profile image {{ Auth::user()->image_path }}"
-                        style="height:150px" 
+                        style="height:100px" 
                         class="rounded mx-auto d-block">
                 @endif
+                <!-- @if(!empty($notFound))
+                    <div class="alert alert-danger text-center" role="alert">
+                        {{ $notFound }}
+                    </div>
+                @endif -->
                 
             </div>
         </div>
