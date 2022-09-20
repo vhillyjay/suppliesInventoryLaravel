@@ -110,16 +110,6 @@ class ProfileController extends Controller
             return redirect('/profile')
                 ->with('profileUpdate', 'Profile successfully updated!');
         }
-
-        // $profileImageName = time() . '-' . $request->profileImage->getClientOriginalName();
-        // $request->profileImage->move(public_path('img/profile'), $profileImageName);
-        // $profile = User::findOrFail($id);
-        // // $profile->name = $request->name;
-        // // $profile->email = $request->email;
-        // $profile->image_path = $profileImageName;
-        // $profile->update();
-        // // dd($request->$profileImageName);
-        // return redirect('/profile');
     }
 
     /**
