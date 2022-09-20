@@ -46,3 +46,5 @@ Route::get('/profile/{id}/edit', [ProfileController::class, 'edit'])->middleware
 Route::put('/profile/{id}', [ProfileController::class, 'update'])->middleware(['auth'])->name('profile.update');
 //downloadtrial
 Route::get('/profile/{id}/download', [SuppliesController::class, 'downloadimage'])->middleware(['auth'])->name('supplies.downloadimage');
+//admin only access
+Route::get('/listofusers', [HomeController::class, 'listofusers'])->middleware(['auth', 'is_admin'])->name('adminaccess.listofusers');

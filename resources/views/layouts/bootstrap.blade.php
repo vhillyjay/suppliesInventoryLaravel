@@ -84,6 +84,15 @@
                     <span>Release Stocks for Supplies</span></a>
             </li>
 
+            @if( Auth::user()->is_admin === 1 )
+                <li class="nav-item">
+                    <a class="nav-link" href=" {{ route('adminaccess.listofusers') }} ">
+                    <i class="bi bi-people"></i>
+                        <span>List of Users</span></a>
+                </li>
+            @elseif( Auth::user()->is_admin === 0 )
+            @endif
+
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
 
@@ -152,7 +161,18 @@
 
                         <!-- Nav Item - Alerts -->
                         
-
+                        <li class="nav-item dropdown no-arrow mx-1">
+                            <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Role:
+                                
+                                @if( Auth::user()->is_admin === 1 )
+                                    Administrator
+                                @elseif( Auth::user()->is_admin === 0 )
+                                    User/Staff
+                                @endif
+                            </a>
+                        </li>
                         
 
                         <div class="topbar-divider d-none d-sm-block"></div>

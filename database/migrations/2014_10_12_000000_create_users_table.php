@@ -24,6 +24,8 @@ return new class extends Migration
             $table->string('image_path')
                 ->nullable()
                 ->default('user.png');
+            $table->boolean('is_admin')
+                ->default(0);
             $table->rememberToken();
             $table->timestamps();
         });

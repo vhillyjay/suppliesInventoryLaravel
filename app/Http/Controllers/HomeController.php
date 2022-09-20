@@ -16,7 +16,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        // $home = Supplies::orderBy('updated_at', 'desc')->get();
         $home = DB::table('supplies')
             ->orderBy('updated_at', 'desc')
             ->get();
@@ -27,16 +26,10 @@ class HomeController extends Controller
                 $totalCounter += $totalSupplies;
             }; // echo "-" . $totalCounter;
         
-        
         $productGross = Supplies::select(DB::raw('sum(quantity * price) as total'))
             ->first()->total; // or ->get()[0]->total; or 'productGross' => $productGross[0]['total'] sa return
             // echo $productGross;
             // this is the right computation/still on review tho
-
-        // $testing = Supplies::select(DB::raw('quantity * price'))
-        //     ->get();
-        //     echo 'testing' . $testing;
-        // product(result) of per item / sample item1 with 3quantity and 3price is 3product
         
         return view('home', [
             'home' => $home,
@@ -110,5 +103,16 @@ class HomeController extends Controller
     public function destroy(Home $home)
     {
         //
+    }
+
+    public function listofusers()
+    {
+        $listOfUsers = DB::table('users')
+            ->select('id', 'name', 'email', 'is_admin')
+            ->get();
+
+        return view('adminaccess.listOfUsers', [
+            'listOfUsers' => $listOfUsers,
+        ]);
     }
 }
