@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Redirect;
 
 class ProfileController extends Controller
 {
@@ -21,9 +22,6 @@ class ProfileController extends Controller
         //
         // $profile = User::all();
         // return Auth::user()->id;
-        // return view('profile.index', [
-        //     'profile' => $profile,
-        // ]);
 
         $profile = User::findOrFail(Auth::user()->id);
         if ($profile->image_path === NULL) {
@@ -44,10 +42,6 @@ class ProfileController extends Controller
                     'profile' => $profile,
                 ])->with('notFound', 'Sorry. Image  ' . $profile->image_path . ' may not exist.');
             }
-            // return view('profile.index', [
-            //     'profile' => $profile,
-            // ])->with('notFound', 'Sorry. Image  ' . $profile->image_path . ' may not exist.');
-            // return 'not null';
         }
     }
 
@@ -183,5 +177,14 @@ class ProfileController extends Controller
             'password' => Hash::make($request->new_password)
         ]));
         return back()->with('success', 'Password changed successfully!');
+    }
+
+    public function admindestroyusers($id)
+    {
+        // return 'destroy user ' . $id . ' using admin acc';
+        $adminDestroy = User::findOrFail($id);
+        $adminDestroy->delete();
+        return redirect()->route('adminaccess.listofusers')
+            ->with('userDeletion', 'User deleted!');
     }
 }
