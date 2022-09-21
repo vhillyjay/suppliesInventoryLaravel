@@ -48,3 +48,4 @@ Route::put('/profile/{id}', [ProfileController::class, 'update'])->middleware(['
 Route::get('/profile/{id}/download', [SuppliesController::class, 'downloadimage'])->middleware(['auth'])->name('supplies.downloadimage');
 //admin only access
 Route::get('/listofusers', [HomeController::class, 'listofusers'])->middleware(['auth', 'is_admin'])->name('adminaccess.listofusers');
+Route::delete('/deleteusers/{id}', [ProfileController::class, 'admindestroyusers'])->middleware(['auth', 'is_admin'])->name('adminaccess.destroyusers');
