@@ -49,7 +49,7 @@
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">No Data
+                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Total Stocks Sold
                             </div>
                             <div class="row no-gutters align-items-center">
                                 <div class="col-auto">
@@ -104,20 +104,36 @@
                     Recent Product Changes/Addition
                 </div>
                 <div class="card-body">
-                    <?php $count = 0; ?>
-                        @if (count($home) > 0)
-                            @foreach ($home as $homeSupplies)
-                                <a href="{{ route('supplies.show', $homeSupplies->id) }}">
-                                    <p>{{ $homeSupplies->name }}</p>
-                                </a>
-                                    <?php if($count == 2) {
-                                        break;
-                                    } ?>
-                                    <?php $count++; ?>
-                            @endforeach
-                        @else
-                            <span>No recent products</span>
-                        @endif
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <?php $count = 0; ?>
+                            @if (count($home) > 0)
+                            <tbody>
+                                @foreach ($home as $homeSupplies)
+                                <tr>
+                                    <td>
+                                        <a href="{{ route('supplies.show', $homeSupplies->id) }}">
+                                            {{ $homeSupplies->name }}
+                                        </a>
+                                    </td>
+                                    <td>
+                                        {{ $homeSupplies->updated_at }}
+                                    </td>
+                                </tr>
+                                    <!-- <a href="{{ route('supplies.show', $homeSupplies->id) }}">
+                                        <p>{{ $homeSupplies->name }}</p>
+                                    </a> -->
+                                        <?php if($count == 2) {
+                                            break;
+                                        } ?>
+                                        <?php $count++; ?>
+                                @endforeach
+                            </tbody>
+                            @else
+                                <span>No recent products</span>
+                            @endif
+                        </table>
+                    </div>
                 </div>
             </div>
 

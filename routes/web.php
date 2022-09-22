@@ -29,14 +29,24 @@ require __DIR__.'/auth.php';
 // Route::get('/home', function () {
 //     return view('home');
 // });
-Route::get('/home', [HomeController::class, 'index'])->middleware(['auth'])->name('');
-Route::get('/supplies', [SuppliesController::class, 'index'])->middleware(['auth'])->name('supplies.index');
-Route::get('/supplies/create', [SuppliesController::class, 'create'])->middleware(['auth'])->name('supplies.create');
-Route::post('/supplies', [SuppliesController::class, 'store'])->middleware(['auth'])->name('supplies.store');
-Route::get('/supplies/{id}', [SuppliesController::class, 'show'])->middleware(['auth'])->name('supplies.show'); 
-Route::get('/supplies/{id}/edit', [SuppliesController::class, 'edit'])->middleware(['auth'])->name('supplies.edit');
-Route::put('/supplies/{id}', [SuppliesController::class, 'update'])->middleware(['auth'])->name('supplies.update');
-Route::delete('supplies/{id}', [SuppliesController::class, 'destroy'])->middleware(['auth'])->name('supplies.destroy');
+Route::get('/home', [HomeController::class, 'index'])
+    ->middleware(['auth'])->name('');
+Route::get('/supplies', [SuppliesController::class, 'index'])
+    ->middleware(['auth'])->name('supplies.index');
+Route::get('/supplies/create', [SuppliesController::class, 'create'])
+    ->middleware(['auth'])->name('supplies.create');
+Route::get('/supplies/selling_list', [SuppliesController::class, 'selling_list'])
+    ->middleware(['auth'])->name('supplies.selling_list');
+Route::post('/supplies', [SuppliesController::class, 'store'])
+    ->middleware(['auth'])->name('supplies.store');
+Route::get('/supplies/{id}', [SuppliesController::class, 'show'])
+    ->middleware(['auth'])->name('supplies.show'); 
+Route::get('/supplies/{id}/edit', [SuppliesController::class, 'edit'])
+    ->middleware(['auth'])->name('supplies.edit');
+Route::put('/supplies/{id}', [SuppliesController::class, 'update'])
+    ->middleware(['auth'])->name('supplies.update');
+Route::delete('supplies/{id}', [SuppliesController::class, 'destroy'])
+    ->middleware(['auth'])->name('supplies.destroy');
 
 Route::get('/profile', [ProfileController::class, 'index'])->middleware(['auth'])->name('profile.index');
 Route::get('/profile/change-password', [ProfileController::class, 'changepassword'])->middleware(['auth'])->name('profile.changepassword');

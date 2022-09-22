@@ -19,6 +19,10 @@ class HomeController extends Controller
         $home = DB::table('supplies')
             ->orderBy('updated_at', 'desc')
             ->get();
+        // $currentDateTime = DB::table('supplies')
+        //     ->select('updated_at')
+        //     ->get();
+        // dd($currentDateTime);
         $homeTotalSupplies = DB::table('supplies')
             ->pluck('quantity');
         $totalCounter = 0;
