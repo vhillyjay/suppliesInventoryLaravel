@@ -244,15 +244,16 @@ class SuppliesController extends Controller
         //
     }
 
+    public function selling_list()
+    {
+        $sellItemList = Supplies::all();
+        return view('supplies.selling_list', [
+            'sellItemList' => $sellItemList,
+        ]);
+    }
+
     public function downloadimage(Request $request, $id)
     {
-        // $userimage = 'user.png';
-        // if (Storage::disk('local')->exists($userimage)) {
-        //     return 'file ' . $userimage . ' in disk';
-        // } else {
-        //     return 'file ' . $userimage . ' not in disk';
-        // } right right
-
         $supplies = Supplies::findOrFail($id);
 
         if ($supplies->image === NULL) {
