@@ -45,8 +45,12 @@ Route::get('/supplies/{id}/edit', [SuppliesController::class, 'edit'])
     ->middleware(['auth'])->name('supplies.edit');
 Route::put('/supplies/{id}', [SuppliesController::class, 'update'])
     ->middleware(['auth'])->name('supplies.update');
-Route::delete('supplies/{id}', [SuppliesController::class, 'destroy'])
+Route::delete('/supplies/{id}', [SuppliesController::class, 'destroy'])
     ->middleware(['auth'])->name('supplies.destroy');
+Route::get('/supplies/{id}/sell', [SuppliesController::class, 'sell'])
+    ->middleware(['auth'])->name('supplies.sell');
+Route::put('/supplies/{id}/sell', [SuppliesController::class, 'sellupdate'])
+    ->middleware(['auth'])->name('supplies.sellupdate');
 
 Route::get('/profile', [ProfileController::class, 'index'])->middleware(['auth'])->name('profile.index');
 Route::get('/profile/change-password', [ProfileController::class, 'changepassword'])->middleware(['auth'])->name('profile.changepassword');
