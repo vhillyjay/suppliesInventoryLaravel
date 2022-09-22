@@ -6,6 +6,8 @@ use App\Models\Supplies;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\DB;
+
 
 class SuppliesController extends Controller
 {
@@ -242,6 +244,47 @@ class SuppliesController extends Controller
         return redirect('/supplies')
             ->with('productDeletion', 'Product deleted!');
         //
+    }
+
+    public function sell($id)
+    {
+        $sellItem = Supplies::findOrfail($id);
+        // dd($sellItem);
+        return view('supplies.sell', [
+            'sellItem' => $sellItem,
+        ]);
+    }
+
+    public function sellupdate(Request $request, $id)
+    {
+        $sellUpdate = Supplies::findOrfail($id);
+        $request->validate([
+            'productQuantity' => 'required|integer|min:1',
+            'sellTo' => 'required|alpha_dash',
+        ]);
+        if ($request->productQuantity > $sellUpdate->quantity) {
+            // return 'unable';
+            return back()->with('sellFail', 'Unable to sell. Not enough stocks in inventory.');
+        } else {
+            // $sellUpdate = $sellUpdate->quantity - $request->productQuantity;
+            // dd($request->all());
+            // dd($sellUpdate);
+            // $sellUpdate->update();
+            // return 'able';
+
+            // $test = DB::table('supplies')
+            //     ->where('id', '=', $sellUpdate->id)
+            //     ->pluck('quantity')
+            //     ->update(['quantity' =>  'quantity + $request->productQuantity']);
+            //     // ->get();
+            //     $difference = $test - $request->productQuantity;
+            //     dd($difference);
+
+            //     return $test;
+        }
+        dd($request->all()); 
+        // max:$sellUpdate->quantity
+        // return $sellUpdate->quantity.'sellUpdate';
     }
 
     public function selling_list()
