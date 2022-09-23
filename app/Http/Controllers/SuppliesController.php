@@ -266,31 +266,40 @@ class SuppliesController extends Controller
             // return 'unable';
             return back()->with('sellFail', 'Unable to sell. Not enough stocks in inventory.');
         } else {
-            // $sellUpdate = $sellUpdate->quantity - $request->productQuantity;
-            // dd($request->all());
-            // dd($sellUpdate);
-            // $sellUpdate->update();
-            // return 'able';
-
-            // $test = DB::table('supplies')
-            //     ->where('id', '=', $sellUpdate->id)
-            //     ->pluck('quantity')
-            //     ->update(['quantity' =>  'quantity + $request->productQuantity']);
-            //     // ->get();
-            //     $difference = $test - $request->productQuantity;
-            //     dd($difference);
-
-            //     return $test;
+            $sellProductQuantity = $request->input('productQuantity');
+            $sellUpdate->quantity = $sellUpdate->quantity - $request->productQuantity;
+            $sellUpdate->update();
+            return redirect()->route('supplies.buy_sell_list')
+                ->with('sellSuccess', '' . $sellProductQuantity . ' products successfully sold to ' . $request->sellTo . '.');
         }
-        dd($request->all()); 
-        // max:$sellUpdate->quantity
-        // return $sellUpdate->quantity.'sellUpdate';
     }
 
-    public function selling_list()
+    public function buy($id)
+    {
+        $buyItem = Supplies::findOrfail($id);
+        return view('supplies.buy', [
+            'buyItem' => $buyItem,
+        ]);
+    }
+
+    public function buyupdate(Request $request, $id)
+    {
+        $buyUpdate = Supplies::findOrfail($id);
+        $request->validate([
+            'productQuantity' => 'required|integer|min:1',
+            'buyFrom' => 'required|alpha_dash',
+        ]);
+        $buyProductQuantity = $request->productQuantity;
+        $buyUpdate->quantity = $buyUpdate->quantity + $request->productQuantity;
+        $buyUpdate->update();
+        return redirect()->route('supplies.buy_sell_list')
+            ->with('buySuccess', 'Bought ' . $buyProductQuantity . ' stocks from ' . $request->buyFrom . '.');
+    }
+
+    public function buy_sell_list()
     {
         $sellItemList = Supplies::all();
-        return view('supplies.selling_list', [
+        return view('supplies.buy_sell_list', [
             'sellItemList' => $sellItemList,
         ]);
     }

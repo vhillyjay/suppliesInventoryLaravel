@@ -1,21 +1,16 @@
 @extends('layouts.bootstrap')
 @section('content')
-    sell page
-    {{ $sellItem }}
-
-    <br>sell to
-    <br>income from selling
-    <br>price cant be 0 or negative
-
+    buy page <br>
+    {{ $buyItem }}
 <div class="row justify-content-center align-items-center">
     <div class="col-lg-6">
         <!-- Basic Card Example -->
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Sell item: {{ $sellItem->name }}</h6>
+                <h6 class="m-0 font-weight-bold text-primary">Buy stocks for item: {{ $buyItem->name }}</h6>
             </div>
             <div class="card-body">
-                <form action="{{ route('supplies.sellupdate', $sellItem->id) }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('supplies.buyupdate', $buyItem->id) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
 
@@ -25,7 +20,7 @@
                             disabled
                             id="" 
                             name="" 
-                            value="{{ $sellItem->id }}" 
+                            value="{{ $buyItem->id }}" 
                             class="form-control" 
                             aria-label="" 
                             aria-describedby="basic-addon1">
@@ -37,7 +32,7 @@
                             disabled
                             id="productName" 
                             name="productName" 
-                            value="{{ $sellItem->name }}" 
+                            value="{{ $buyItem->name }}" 
                             class="form-control" 
                             aria-label="" 
                             aria-describedby="basic-addon1">
@@ -52,7 +47,7 @@
                             disabled
                             id="productPrice" 
                             name="productPrice" 
-                            value="{{ $sellItem->price }}" 
+                            value="{{ $buyItem->price }}" 
                             step=".01" 
                             class="form-control" 
                             aria-label="" 
@@ -68,14 +63,14 @@
                             disabled
                             id="productQuantity" 
                             name="productQuantity" 
-                            value="{{ $sellItem->quantity }}" 
+                            value="{{ $buyItem->quantity }}" 
                             class="form-control" 
                             aria-label="" 
                             aria-describedby="">
                     </div>
 
                     <div class="input-group my-2">
-                        <span class="input-group-text" id="">Quantity/numbertosell</span>
+                        <span class="input-group-text" id="">Quantity/numbertobuy</span>
                         <input type="number" 
                             id="productQuantity" 
                             name="productQuantity" 
@@ -89,20 +84,20 @@
                         @enderror
                     
                     <div class="input-group my-2">
-                        <span class="input-group-text" id="">Sell to</span>
+                        <span class="input-group-text" id="">Buy from</span>
                         <input type="text"
-                            id="sellTo"
-                            name="sellTo"
+                            id="buyFrom"
+                            name="buyFrom"
                             value=""
                             class="form-control"
                             aria-label="" 
                             aria-describedby="">
                     </div>
-                        @error('sellTo')
+                        @error('buyFrom')
                             <span class="text-danger"> {{ $message }} </span>
                         @enderror
 
-                    <input type="submit" value="Sell" class="btn btn-outline-primary">
+                    <input type="submit" value="Buy" class="btn btn-outline-primary">
                     @if(session('sellFail'))
                         <div class="alert alert-danger text-center" role="alert">
                             {{ session('sellFail') }} 

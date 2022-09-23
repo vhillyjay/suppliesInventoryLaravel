@@ -35,8 +35,8 @@ Route::get('/supplies', [SuppliesController::class, 'index'])
     ->middleware(['auth'])->name('supplies.index');
 Route::get('/supplies/create', [SuppliesController::class, 'create'])
     ->middleware(['auth'])->name('supplies.create');
-Route::get('/supplies/selling_list', [SuppliesController::class, 'selling_list'])
-    ->middleware(['auth'])->name('supplies.selling_list');
+Route::get('/supplies/buy_sell_list', [SuppliesController::class, 'buy_sell_list'])
+    ->middleware(['auth'])->name('supplies.buy_sell_list');
 Route::post('/supplies', [SuppliesController::class, 'store'])
     ->middleware(['auth'])->name('supplies.store');
 Route::get('/supplies/{id}', [SuppliesController::class, 'show'])
@@ -51,6 +51,10 @@ Route::get('/supplies/{id}/sell', [SuppliesController::class, 'sell'])
     ->middleware(['auth'])->name('supplies.sell');
 Route::put('/supplies/{id}/sell', [SuppliesController::class, 'sellupdate'])
     ->middleware(['auth'])->name('supplies.sellupdate');
+Route::get('/supplies/{id}/buy', [SuppliesController::class, 'buy'])
+    ->middleware(['auth'])->name('supplies.buy');
+Route::put('/supplies/{id}/buy', [SuppliesController::class, 'buyupdate'])
+    ->middleware(['auth'])->name('supplies.buyupdate');
 
 Route::get('/profile', [ProfileController::class, 'index'])->middleware(['auth'])->name('profile.index');
 Route::get('/profile/change-password', [ProfileController::class, 'changepassword'])->middleware(['auth'])->name('profile.changepassword');
