@@ -1,10 +1,8 @@
-{{ $sellItemList }}
-
 @extends('layouts.bootstrap')
 @section('content')
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Selling List</h1>
+        <h1 class="h3 mb-0 text-gray-800">Buy Sell List</h1>
         <!-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                 class="fas fa-download fa-sm text-white-50"></i> Generate Report</a> -->
     </div>
@@ -48,7 +46,10 @@
                             <td>{{ $sellItemListData->brand }}</td>
                             <td>{{ $sellItemListData->price }}</td>
                             <td>{{ $sellItemListData->quantity }}</td>
-                            <td><a href="{{ route('supplies.sell', $sellItemListData->id) }}">Sell</a></td>
+                            <td>
+                                <a href="{{ route('supplies.buy', $sellItemListData->id) }}">Buy</a>
+                                <a href="{{ route('supplies.sell', $sellItemListData->id) }}">Sell</a>
+                            </td>
                             <!-- named routes -->
                         </tr>                    
                     @endforeach
@@ -57,4 +58,13 @@
             </div>
         </div>
     </div>
+    @if(session('sellSuccess'))
+        <div class="alert alert-success text-center" role="alert">
+            {{ session('sellSuccess') }}
+        </div>
+    @elseif(session('buySuccess'))
+        <div class="alert alert-success text-center" role="alert">
+            {{ session('buySuccess') }}
+        </div>
+    @endif
 @endsection

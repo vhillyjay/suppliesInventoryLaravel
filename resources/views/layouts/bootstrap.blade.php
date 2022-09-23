@@ -74,14 +74,14 @@
                     <span>Add new Product</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="">
-                    <i class="bi bi-plus-square"></i>
-                    <span>Add Stocks for Supplies</span></a>
+                <a class="nav-link" href=" {{ route('supplies.buy_sell_list') }} ">
+                    <i class="bi bi-plus-slash-minus"></i>
+                    <span>Buy/Sell Stocks for Supplies</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href=" {{ route('supplies.selling_list') }} ">
-                    <i class="bi bi-dash-square"></i>
-                    <span>Sell Stocks for Supplies</span></a>
+                <a class="nav-link" href="  ">
+                    <i class="bi bi-list"></i>
+                    <span>Transactions</span></a>
             </li>
 
             @if( Auth::user()->is_admin === 1 )
