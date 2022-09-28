@@ -15,8 +15,9 @@
                 <h6 class="m-0 font-weight-bold text-primary">Sell item: {{ $sellItem->name }}</h6>
             </div>
             <div class="card-body">
-                <form action="{{ route('supplies.sellupdate', $sellItem->id) }}" method="POST" enctype="multipart/form-data">
-                    @csrf
+                <!-- <form action="{{ route('supplies.sellupdate', $sellItem->id) }}" method="POST" enctype="multipart/form-data"> -->
+                <form action="{{ route('transactions.sellupdate', $sellItem->id) }}" method="POST" enctype="multipart/form-data">    
+                @csrf
                     @method('PUT')
 
                     <div class="input-group my-2">

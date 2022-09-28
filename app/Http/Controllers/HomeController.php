@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Home;
 use App\Models\Supplies;
+use App\Models\Transaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -23,6 +24,7 @@ class HomeController extends Controller
         //     ->select('updated_at')
         //     ->get();
         // dd($currentDateTime);
+
         $homeTotalSupplies = DB::table('supplies')
             ->pluck('quantity');
         $totalCounter = 0;
@@ -34,11 +36,35 @@ class HomeController extends Controller
             ->first()->total; // or ->get()[0]->total; or 'productGross' => $productGross[0]['total'] sa return
             // echo $productGross;
             // this is the right computation/still on review tho
+
+        $stocksSold = Transaction::select(DB::raw('sum(product_quantity) AS totalSold'))
+            ->where('sell_to', '!=', NULL)
+            ->first()->totalSold;
+        // dd($stocksSold);
+
+        $stocksBought = Transaction::select(DB::raw('sum(product_quantity) AS totalBought'))
+            ->where('buy_from', '!=', NULL)
+            ->first()->totalBought;
+        // dd($stocksBought);
+
+        $stocksSoldGross = Transaction::select(DB::raw('sum(transaction_price) AS totalSoldGross'))
+            ->where('sell_to', '!=', NULL)
+            ->first()->totalSoldGross;
+        // dd($stocksSoldGross);
+
+        $stocksBoughtGross = Transaction::select(DB::raw('sum(transaction_price) AS totalBoughtGross'))
+            ->where('buy_from', '!=', NULL)
+            ->first()->totalBoughtGross;
+        // dd($stocksBoughtGross);
         
         return view('home', [
             'home' => $home,
             'totalCounter' => $totalCounter,
             'productGross' => $productGross,
+            'stocksSold' => $stocksSold,
+            'stocksBought' => $stocksBought,
+            'stocksSoldGross' => $stocksSoldGross,
+            'stocksBoughtGross' => $stocksBoughtGross,
         ]);
         //
     }

@@ -17,9 +17,13 @@ return new class extends Migration
             $table->id('transaction_id');
             $table->string('user_id');
             $table->string('supplies_id');
-            $table->string('sold_to')
+            $table->string('product_name');
+            $table->integer('product_quantity');
+            $table->decimal('product_price', 5, 2);
+            $table->decimal('transaction_price', 5, 2);
+            $table->string('sell_to')
                 ->nullable(); // no content yet
-            $table->string('brought_from')
+            $table->string('buy_from')
                 ->nullable(); // no content yet
             $table->timestamps();
         });

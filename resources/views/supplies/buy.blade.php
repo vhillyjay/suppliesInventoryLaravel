@@ -10,7 +10,8 @@
                 <h6 class="m-0 font-weight-bold text-primary">Buy stocks for item: {{ $buyItem->name }}</h6>
             </div>
             <div class="card-body">
-                <form action="{{ route('supplies.buyupdate', $buyItem->id) }}" method="POST" enctype="multipart/form-data">
+                <!-- <form action="{{ route('supplies.buyupdate', $buyItem->id) }}" method="POST" enctype="multipart/form-data"> -->
+                <form action="{{ route('transactions.buyupdate', $buyItem->id) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
 
