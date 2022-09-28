@@ -14,6 +14,8 @@ create database dbname;
 
 php artisan make:migration create_name_table
 php artisan migrate
+php artisan storage:link
+    to create the symbolic link
 
 UPLOADING TO HEROKU
 #

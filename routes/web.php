@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\SuppliesController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TransactionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -67,3 +68,6 @@ Route::get('/profile/{id}/download', [SuppliesController::class, 'downloadimage'
 //admin only access
 Route::get('/listofusers', [HomeController::class, 'listofusers'])->middleware(['auth', 'is_admin'])->name('adminaccess.listofusers');
 Route::delete('/deleteusers/{id}', [ProfileController::class, 'admindestroyusers'])->middleware(['auth', 'is_admin'])->name('adminaccess.destroyusers');
+
+Route::get('/transactions', [TransactionController::class, 'index'])
+    ->middleware(['auth'])->name('transactions.index');
