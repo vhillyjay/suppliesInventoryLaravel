@@ -79,7 +79,7 @@
                     <span>Buy/Sell Stocks for Supplies</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="  ">
+                <a class="nav-link" href=" {{ route('transactions.index') }} ">
                     <i class="bi bi-list"></i>
                     <span>Transactions</span></a>
             </li>
