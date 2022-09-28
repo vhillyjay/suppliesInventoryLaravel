@@ -71,3 +71,7 @@ Route::delete('/deleteusers/{id}', [ProfileController::class, 'admindestroyusers
 
 Route::get('/transactions', [TransactionController::class, 'index'])
     ->middleware(['auth'])->name('transactions.index');
+Route::put('/transactions/{id}/buy', [TransactionController::class, 'buyupdate'])
+    ->middleware(['auth'])->name('transactions.buyupdate');
+Route::put('/transactions/{id}/sell', [TransactionController::class, 'sellupdate'])
+    ->middleware(['auth'])->name('transactions.sellupdate');
