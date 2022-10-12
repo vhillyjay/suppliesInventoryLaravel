@@ -145,7 +145,9 @@
                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                 Transactions this Month
                             </div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800"> {{ $totalCounter }} </div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">  
+                                {{ $transactionsPerMonth }}
+                            </div>
                         </div>
                         <div class="col-auto">
                             <i class="bi bi-calendar fa-2x text-gray-300"></i>
