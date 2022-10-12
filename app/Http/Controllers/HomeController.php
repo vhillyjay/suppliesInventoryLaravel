@@ -7,6 +7,7 @@ use App\Models\Supplies;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Carbon;
 
 class HomeController extends Controller
 {
@@ -56,6 +57,19 @@ class HomeController extends Controller
             ->where('buy_from', '!=', NULL)
             ->first()->totalBoughtGross;
         // dd($stocksBoughtGross);
+
+        //test
+        // $results = Transaction::select('*')
+        //     ->whereMonth('created_at', Carbon::now()->month)
+        //     ->get();
+
+        $transactionsPerMonth = Transaction::select(
+            DB::raw('(COUNT(*)) AS transactionsPerMonth')
+        )
+            ->whereMonth('created_at', Carbon::now()->month)
+            ->first()->transactionsPerMonth;
+            // ->get();
+        //test
         
         return view('home', [
             'home' => $home,
@@ -65,6 +79,8 @@ class HomeController extends Controller
             'stocksBought' => $stocksBought,
             'stocksSoldGross' => $stocksSoldGross,
             'stocksBoughtGross' => $stocksBoughtGross,
+            // 'results' => $results,
+            'transactionsPerMonth' => $transactionsPerMonth,
         ]);
         //
     }
