@@ -172,8 +172,18 @@
                         <?php $productCount = 0; ?>
                             @if (count($recentProductChanges) > 0)
                             <tbody>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>Date</th>
+                                </tr>
                                 @foreach ($recentProductChanges as $recentProductChangesData)
                                 <tr>
+                                    <td>
+                                        <a href="{{ route('supplies.show', $recentProductChangesData->id) }}">
+                                            {{ $recentProductChangesData->id }}
+                                        </a>
+                                    </td>
                                     <td>
                                         <a href="{{ route('supplies.show', $recentProductChangesData->id) }}">
                                             {{ $recentProductChangesData->name }}
@@ -212,6 +222,12 @@
                         <?php $transactionCount = 0; ?>
                             @if (count($recentTransactions) > 0)
                             <tbody>
+                                <tr>
+                                    <th>id</th>
+                                    <th>Name</th>
+                                    <th>Issued by</th>
+                                    <th>Date</th>
+                                </tr>
                                 @foreach ($recentTransactions as $recentTransactionsData)
                                 <tr>
                                     <td>
@@ -223,6 +239,9 @@
                                         <a href="{{ route('transactions.show', $recentTransactionsData->id) }}">
                                             {{ $recentTransactionsData->product_name }}
                                         </a>
+                                    </td>
+                                    <td>
+                                        {{ $recentTransactionsData->issued_by }}
                                     </td>
                                     <td>
                                         {{ $recentTransactionsData->created_at }}

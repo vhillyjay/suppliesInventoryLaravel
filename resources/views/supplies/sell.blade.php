@@ -3,9 +3,7 @@
     sell page
     {{ $sellItem }}
 
-    <br>sell to
     <br>income from selling
-    <br>price cant be 0 or negative
 
 <div class="row justify-content-center align-items-center">
     <div class="col-lg-6">
