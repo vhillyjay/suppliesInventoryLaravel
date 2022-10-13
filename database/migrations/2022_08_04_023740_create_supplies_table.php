@@ -24,7 +24,8 @@ return new class extends Migration
                 ->nullable();
             // $table->integer('price');
             $table->decimal('price', 5, 2);
-            $table->integer('quantity');
+            $table->integer('quantity')
+                ->nullable();
             $table->string('image')
                 ->nullable();
             // $table->double('price', 8, 2);

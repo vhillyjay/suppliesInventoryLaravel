@@ -18,13 +18,17 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $home = DB::table('supplies')
+        $recentProductChanges = DB::table('supplies')
             ->orderBy('updated_at', 'desc')
             ->get();
         // $currentDateTime = DB::table('supplies')
         //     ->select('updated_at')
         //     ->get();
         // dd($currentDateTime);
+
+        $recentTransactions = DB::table('transactions')
+            ->orderBy('created_at', 'desc')
+            ->get();
 
         $homeTotalSupplies = DB::table('supplies')
             ->pluck('quantity');
@@ -72,7 +76,8 @@ class HomeController extends Controller
         //test
         
         return view('home', [
-            'home' => $home,
+            'recentProductChanges' => $recentProductChanges,
+            'recentTransactions' => $recentTransactions,
             'totalCounter' => $totalCounter,
             'productGross' => $productGross,
             'stocksSold' => $stocksSold,
