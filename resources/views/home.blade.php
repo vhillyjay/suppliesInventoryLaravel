@@ -215,12 +215,12 @@
                                 @foreach ($recentTransactions as $recentTransactionsData)
                                 <tr>
                                     <td>
-                                        <a href="{{ route('transactions.show', $recentTransactionsData->transaction_id) }}">
-                                            {{ $recentTransactionsData->transaction_id }}
+                                        <a href="{{ route('transactions.show', $recentTransactionsData->id) }}">
+                                            {{ $recentTransactionsData->id }}
                                         </a>
                                     </td>
                                     <td>
-                                        <a href="">
+                                        <a href="{{ route('transactions.show', $recentTransactionsData->id) }}">
                                             {{ $recentTransactionsData->product_name }}
                                         </a>
                                     </td>
