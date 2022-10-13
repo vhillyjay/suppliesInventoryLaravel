@@ -7,6 +7,7 @@ use App\Models\Supplies;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class TransactionController extends Controller
 {
@@ -19,6 +20,9 @@ class TransactionController extends Controller
     {
         //
         $transactionRecords = Transaction::all();
+        // $transactionRecords = DB::table('transactions')
+        //     ->orderBy('id', 'desc')
+        //     ->get();
         return view('transactions.index', [
             'transactionRecords' => $transactionRecords,
         ]);
@@ -107,6 +111,7 @@ class TransactionController extends Controller
 
         $transactionBuy = new Transaction();
         $transactionBuy->user_id = Auth::user()->id;
+        $transactionBuy->issued_by = Auth::user()->name;
         $transactionBuy->supplies_id = $buyUpdate->id;
         $transactionBuy->product_name = $buyUpdate->name;
         $transactionBuy->product_quantity = $request->productQuantity;
@@ -138,6 +143,7 @@ class TransactionController extends Controller
             $sellUpdate->quantity = $sellUpdate->quantity - $request->productQuantity;
 
             $transactionSell->user_id = Auth::user()->id;
+            $transactionSell->issued_by = Auth::user()->name;
             $transactionSell->supplies_id = $sellUpdate->id;
             $transactionSell->product_name = $sellUpdate->name;
             $transactionSell->product_quantity = $request->productQuantity;
