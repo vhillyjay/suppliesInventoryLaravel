@@ -169,31 +169,73 @@
                 <div class="card-body">
                     <div class="table-responsive">
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                        <?php $count = 0; ?>
-                            @if (count($home) > 0)
+                        <?php $productCount = 0; ?>
+                            @if (count($recentProductChanges) > 0)
                             <tbody>
-                                @foreach ($home as $homeSupplies)
+                                @foreach ($recentProductChanges as $recentProductChangesData)
                                 <tr>
                                     <td>
-                                        <a href="{{ route('supplies.show', $homeSupplies->id) }}">
-                                            {{ $homeSupplies->name }}
+                                        <a href="{{ route('supplies.show', $recentProductChangesData->id) }}">
+                                            {{ $recentProductChangesData->name }}
                                         </a>
                                     </td>
                                     <td>
-                                        {{ $homeSupplies->updated_at }}
+                                        {{ $recentProductChangesData->updated_at }}
                                     </td>
                                 </tr>
-                                    <!-- <a href="{{ route('supplies.show', $homeSupplies->id) }}">
-                                        <p>{{ $homeSupplies->name }}</p>
-                                    </a> -->
-                                        <?php if($count == 2) {
+                                        <?php if($productCount == 2) {
                                             break;
                                         } ?>
-                                        <?php $count++; ?>
+                                        <?php $productCount++; ?>
                                 @endforeach
                             </tbody>
                             @else
                                 <span>No recent products</span>
+                            @endif
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="col-lg-6">
+
+            <!-- Default Card Example -->
+            <div class="card mb-4">
+                <div class="card-header">
+                    Recent Transactions
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <?php $transactionCount = 0; ?>
+                            @if (count($recentTransactions) > 0)
+                            <tbody>
+                                @foreach ($recentTransactions as $recentTransactionsData)
+                                <tr>
+                                    <td>
+                                        <a href="{{ route('transactions.show', $recentTransactionsData->transaction_id) }}">
+                                            {{ $recentTransactionsData->transaction_id }}
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a href="">
+                                            {{ $recentTransactionsData->product_name }}
+                                        </a>
+                                    </td>
+                                    <td>
+                                        {{ $recentTransactionsData->created_at }}
+                                    </td>
+                                </tr>
+                                        <?php if($transactionCount == 2) {
+                                            break;
+                                        } ?>
+                                        <?php $transactionCount++; ?>
+                                @endforeach
+                            </tbody>
+                            @else
+                                <span>No recent transactions</span>
                             @endif
                         </table>
                     </div>

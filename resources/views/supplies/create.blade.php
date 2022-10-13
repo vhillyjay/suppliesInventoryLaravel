@@ -15,21 +15,24 @@
                         class="form-control my-2" 
                         id="productName" 
                         name="productName" 
-                        placeholder="Name" >
+                        placeholder="Name">
                         @error('productName')
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
+
                     <input type="text" 
                         class="form-control my-2" 
                         id="productType" 
                         name="productType" 
-                        placeholder="Type" >
+                        placeholder="Type">
+
                     <input 
                         type="text" 
                         class="form-control my-2" 
                         id="productBrand" 
                         name="productBrand" 
                         placeholder="Brand">
+
                     <input 
                         type="number" 
                         class="form-control my-2" 
@@ -40,14 +43,16 @@
                         @error('productPrice')
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
-                    <input type="number" 
+
+                    <!-- <input type="number" 
                         class="form-control my-2" 
                         id="productQuantity" 
                         name="productQuantity" 
                         placeholder="Quantity">
                         @error('productQuantity')
                             <span class="text-danger"> {{ $message }} </span>
-                        @enderror
+                        @enderror -->
+
                     <input type="file" 
                         name="productImage" 
                         id="productImage" 
@@ -55,6 +60,7 @@
                         @error('productImage')
                             <span class="text-danger"> {{ $message }} </span>
                         @enderror
+                        
                     <div class="align-items-end">
                         <input type="submit" value="Submit" class="btn btn-outline-primary">
                         <!-- align end -->

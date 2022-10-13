@@ -71,6 +71,8 @@ Route::delete('/deleteusers/{id}', [ProfileController::class, 'admindestroyusers
 
 Route::get('/transactions', [TransactionController::class, 'index'])
     ->middleware(['auth'])->name('transactions.index');
+Route::get('/transactions/{id}', [TransactionController::class, 'show'])
+    ->middleware(['auth'])->name('transactions.show'); // not working yet
 Route::put('/transactions/{id}/buy', [TransactionController::class, 'buyupdate'])
     ->middleware(['auth'])->name('transactions.buyupdate');
 Route::put('/transactions/{id}/sell', [TransactionController::class, 'sellupdate'])

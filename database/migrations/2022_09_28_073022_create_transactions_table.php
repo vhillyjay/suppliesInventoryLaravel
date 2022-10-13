@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('product_name');
             $table->integer('product_quantity');
             $table->decimal('product_price', 5, 2);
-            $table->decimal('transaction_price', 5, 2);
+            $table->decimal('transaction_price', 10, 2);
             $table->string('sell_to')
                 ->nullable(); // no content yet
             $table->string('buy_from')

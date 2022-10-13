@@ -63,7 +63,7 @@
                             <span class="text-danger"> {{ $message }} </span>
                         @enderror
 
-                    <div class="input-group my-2">
+                    <!-- <div class="input-group my-2">
                         <span class="input-group-text" id="">Quantity</span>
                         <input type="number" 
                             id="productQuantity" 
@@ -75,7 +75,7 @@
                     </div>
                         @error('productQuantity')
                             <span class="text-danger"> {{ $message }} </span>
-                        @enderror
+                        @enderror -->
 
                     <input type="file" 
                         name="productImage" 
