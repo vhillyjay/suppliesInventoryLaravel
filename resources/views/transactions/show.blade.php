@@ -1,4 +1,5 @@
 @extends('layouts.bootstrap')
 @section('content')
-    showhowshow
+    showhowshowtrans <br>
+    {{ $transaction->id }}
 @endsection

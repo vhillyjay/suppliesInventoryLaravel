@@ -42,14 +42,14 @@
                     <tbody>
                     @foreach($transactionRecords as $transactionRecordsData)
                         <tr>     
-                            <td>{{ $transactionRecordsData->transaction_id }}</td>             
+                            <td>{{ $transactionRecordsData->id }}</td>             
                             <td>{{ $transactionRecordsData->supplies_id }}</td>
                             <td>{{ $transactionRecordsData->product_name }}</td>
                             <td>{{ $transactionRecordsData->product_quantity }}</td>
                             <td>{{ $transactionRecordsData->transaction_price }}</td>
                             <td>{{ $transactionRecordsData->sell_to }}</td>
                             <td>{{ $transactionRecordsData->buy_from }}</td>
-                            <td><a href="">More</a></td>
+                            <td><a href="{{ route('transactions.show', $transactionRecordsData->id) }}">More</a></td>
                             <!-- <td><a href="  ">Details</a></td> -->
                             <!-- named routes -->
                         </tr>                    
