@@ -129,4 +129,51 @@ class PDFController extends Controller
             'suppliesList' => $suppliesList,
         ]);
     }
+
+    public function transactions_list(Request $request)
+    {
+        $transactionsList = DB::table("transactions")->get();
+            view()->share('transactionsList', $transactionsList);   // not gets :(
+
+                // dd($transactionsList);
+
+        $data = [
+            'title' => 'Transactions List',
+            'date' => date('m/d/Y'),
+            'printedBy' => Auth::user()->name,
+        ];
+              
+        $pdf = PDF::loadView('pdf.transactions_list', $data)
+            ->setPaper('a4', 'landscape');
+
+        return $pdf->download('transactions_list.pdf'); //filename and download process
+        return view('pdf.transactions_list', [
+            'transactionsList' => $transactionsList,
+        ]);
+    }
+
+    // public function transaction_receipt(Request $request)
+    public function transaction_receipt(Request $request, $id)
+    {
+        $transactionReceipt = DB::table("transactions")
+            ->where('id', '=', $id)
+            ->first(); // ->get(); doesnt work / first does work
+        // dd($transactionReceipt);
+
+            view()->share('transactionReceipt', $transactionReceipt);   // not gets :(
+
+        $data = [
+            'title' => 'Sample Receipt',
+            'date' => date('m/d/Y'),
+            'printedBy' => Auth::user()->name,
+        ];
+              
+        $pdf = PDF::loadView('pdf.transaction_receipt', $data)
+            ->setPaper('a7', '');
+
+        return $pdf->download('sample_receipt.pdf'); //filename and download process
+        return view('pdf.transaction_receipt', [
+            'transactionReceipt' => $transactionReceipt,
+        ]);
+    }
 }

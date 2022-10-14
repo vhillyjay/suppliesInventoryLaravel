@@ -85,5 +85,10 @@ Route::get('/generate-pdf', [PDFController::class, 'generatePDF'])
     ->middleware(['auth'])->name('pdf.sample');
 //sample
 
+//pdf reports
 Route::get('/pdf/supplies_inventory_list', [PDFController::class, 'supplies_inventory_list'])
     ->middleware(['auth'])->name('pdf.supplies_inventory_list');
+Route::get('/pdf/transactions_list', [PDFController::class, 'transactions_list'])
+    ->middleware(['auth'])->name('pdf.transactions_list');
+Route::get('/pdf/{id}/transaction_receipt', [PDFController::class, 'transaction_receipt'])
+    ->middleware(['auth'])->name('pdf.transaction_receipt');
