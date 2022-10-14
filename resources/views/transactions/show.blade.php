@@ -82,8 +82,8 @@
                     </div>
                     <!-- <p> Issued last - {{ $transaction->created_at }} </p> -->
 
-                    <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
-                        <i class="bi bi-printer"></i> 
+                    <a href="{{ route('pdf.transaction_receipt', $transaction->id) }}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+                        <i class="bi bi-download fa-sm text-white-50"></i> 
                             Generate Report/Print
                     </a>
                 </div>
