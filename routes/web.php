@@ -5,6 +5,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\SuppliesController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TransactionController;
+use App\Http\Controllers\PDFController;
 
 /*
 |--------------------------------------------------------------------------
@@ -77,3 +78,12 @@ Route::put('/transactions/{id}/buy', [TransactionController::class, 'buyupdate']
     ->middleware(['auth'])->name('transactions.buyupdate');
 Route::put('/transactions/{id}/sell', [TransactionController::class, 'sellupdate'])
     ->middleware(['auth'])->name('transactions.sellupdate');
+
+//pdf
+//sample
+Route::get('/generate-pdf', [PDFController::class, 'generatePDF'])
+    ->middleware(['auth'])->name('pdf.sample');
+//sample
+
+Route::get('/pdf/supplies_inventory_list', [PDFController::class, 'supplies_inventory_list'])
+    ->middleware(['auth'])->name('pdf.supplies_inventory_list');
