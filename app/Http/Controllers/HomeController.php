@@ -166,4 +166,26 @@ class HomeController extends Controller
             'listOfUsers' => $listOfUsers,
         ]);
     }
+
+    public function search(Request $request)
+    {
+        $searchSupplies = Supplies::all();
+        // $searchTransaction = Transaction::all();     
+        // dd($request->searchAll);
+        if ($request->searchAll === NULL) {
+            return redirect()->route('home');
+        } else {
+            $searchSupplies = DB::table('SUPPLIES')
+                ->where('name', 'LIKE', '%'.$request->searchAll.'%')
+                ->get();
+            // $searchTransaction = DB::table('TRANSACTION')
+            // ->where('product_name', 'LIKE', '%'.$request->searchAll.'%')
+            // ->get();
+        }
+       
+        return view('search', [
+            'searchSupplies' => $searchSupplies,
+            // 'searchTransaction' => $searchTransaction,
+        ]);
+    }
 }

@@ -32,7 +32,10 @@ require __DIR__.'/auth.php';
 //     return view('home');
 // });
 Route::get('/home', [HomeController::class, 'index'])
-    ->middleware(['auth'])->name('');
+    ->middleware(['auth'])->name('home');
+Route::get('/search', [HomeController::class, 'search'])
+    ->middleware(['auth'])->name('home.search');
+
 Route::get('/supplies', [SuppliesController::class, 'index'])
     ->middleware(['auth'])->name('supplies.index');
 Route::get('/supplies/create', [SuppliesController::class, 'create'])
