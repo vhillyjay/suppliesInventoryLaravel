@@ -15,8 +15,6 @@ return new class extends Migration
     {
         Schema::create('supplies', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
-            // creates created_at and updated_at
             $table->string('name')
                 ->unique();
             $table->string('type');
@@ -29,6 +27,8 @@ return new class extends Migration
             $table->string('image')
                 ->nullable();
             // $table->double('price', 8, 2);
+            $table->timestamps();
+            // creates created_at and updated_at
         });
     }
 
