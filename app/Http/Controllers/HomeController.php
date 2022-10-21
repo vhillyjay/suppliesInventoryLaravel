@@ -170,22 +170,26 @@ class HomeController extends Controller
     public function search(Request $request)
     {
         $searchSupplies = Supplies::all();
-        // $searchTransaction = Transaction::all();     
+        $searchTransaction = Transaction::all();     
         // dd($request->searchAll);
         if ($request->searchAll === NULL) {
             return redirect()->route('home');
         } else {
             $searchSupplies = DB::table('SUPPLIES')
                 ->where('name', 'LIKE', '%'.$request->searchAll.'%')
+                ->orWhere('type', 'LIKE', '%'.$request->searchAll.'%')
+                ->orWhere('brand', 'LIKE', '%'.$request->searchAll.'%')
                 ->get();
-            // $searchTransaction = DB::table('TRANSACTION')
-            // ->where('product_name', 'LIKE', '%'.$request->searchAll.'%')
-            // ->get();
+            $searchTransaction = DB::table('TRANSACTIONS')
+                ->where('product_name', 'LIKE', '%'.$request->searchAll.'%')
+                ->orWhere('issued_by', 'LIKE', '%'.$request->searchAll.'%')
+                ->get();
         }
        
         return view('search', [
             'searchSupplies' => $searchSupplies,
-            // 'searchTransaction' => $searchTransaction,
+            'searchTransaction' => $searchTransaction,
+            'sampling' => DB::table('SUPPLIES')->simplePaginate(2),
         ]);
     }
 }
