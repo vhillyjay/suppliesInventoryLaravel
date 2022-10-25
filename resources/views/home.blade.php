@@ -193,10 +193,10 @@
                                         {{ $recentProductChangesData->updated_at }}
                                     </td>
                                 </tr>
-                                        <?php if($productCount == 2) {
-                                            break;
-                                        } ?>
-                                        <?php $productCount++; ?>
+                                        @if($productCount == 2) 
+                                            @break;
+                                        @endif
+                                        @php $productCount++; @endphp
                                 @endforeach
                             </tbody>
                             @else
@@ -247,10 +247,10 @@
                                         {{ $recentTransactionsData->created_at }}
                                     </td>
                                 </tr>
-                                        <?php if($transactionCount == 2) {
-                                            break;
-                                        } ?>
-                                        <?php $transactionCount++; ?>
+                                        @if($transactionCount == 2)
+                                            @break;
+                                        @endif
+                                        @php $transactionCount++; @endphp
                                 @endforeach
                             </tbody>
                             @else

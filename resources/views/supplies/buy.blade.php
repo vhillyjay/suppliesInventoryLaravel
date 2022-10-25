@@ -1,7 +1,6 @@
 @extends('layouts.bootstrap')
 @section('content')
-    buy page <br>
-    {{ $buyItem }}
+    
 <div class="row justify-content-center align-items-center">
     <div class="col-lg-6">
         <!-- Basic Card Example -->
@@ -41,6 +40,30 @@
                         @error('productName')
                             <span class="text-danger"> {{ $message }} </span>
                         @enderror
+
+                    <div class="input-group my-2">
+                        <span class="input-group-text" id="basic-addon1">Type</span>
+                        <input type="text" 
+                            disabled
+                            id="productType" 
+                            name="productType" 
+                            value="{{ $buyItem->type }}" 
+                            class="form-control" 
+                            aria-label="" 
+                            aria-describedby="basic-addon1">
+                    </div>
+
+                    <div class="input-group my-2">
+                        <span class="input-group-text" id="basic-addon1">Brand</span>
+                        <input type="text" 
+                            disabled
+                            id="productBrand" 
+                            name="productBrand" 
+                            value="{{ $buyItem->brand }}" 
+                            class="form-control" 
+                            aria-label="" 
+                            aria-describedby="basic-addon1">
+                    </div>
 
                     <div class="input-group my-2">
                         <span class="input-group-text" id="">Price</span>
