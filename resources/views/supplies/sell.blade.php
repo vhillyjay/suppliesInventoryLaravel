@@ -1,9 +1,5 @@
 @extends('layouts.bootstrap')
 @section('content')
-    sell page
-    {{ $sellItem }}
-
-    <br>income from selling
 
 <div class="row justify-content-center align-items-center">
     <div class="col-lg-6">
@@ -44,6 +40,30 @@
                         @error('productName')
                             <span class="text-danger"> {{ $message }} </span>
                         @enderror
+
+                    <div class="input-group my-2">
+                        <span class="input-group-text" id="basic-addon1">Type</span>
+                        <input type="text" 
+                            disabled
+                            id="productType" 
+                            name="productType" 
+                            value="{{ $sellItem->type }}" 
+                            class="form-control" 
+                            aria-label="" 
+                            aria-describedby="basic-addon1">
+                    </div>
+
+                    <div class="input-group my-2">
+                        <span class="input-group-text" id="basic-addon1">Brand</span>
+                        <input type="text" 
+                            disabled
+                            id="productBrand" 
+                            name="productBrand" 
+                            value="{{ $sellItem->brand }}" 
+                            class="form-control" 
+                            aria-label="" 
+                            aria-describedby="basic-addon1">
+                    </div>
 
                     <div class="input-group my-2">
                         <span class="input-group-text" id="">Price</span>
